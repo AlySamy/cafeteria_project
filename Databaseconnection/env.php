@@ -1,6 +1,6 @@
 <?php
 const DataBase='mysql';
 const DBHost='localhost';
-const DBName='users';
-const UserName='root';
+const DBName='cafeteria';
+const UserName='root'; 
 const userPassword='0000';
