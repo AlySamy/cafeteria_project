@@ -74,4 +74,4 @@ $db = new DB($con);
 // $db->update('users',1,['name'=>'kareem','email' => 'karem234@gmail.com']);
 // $db->delete('users',3);
 
-$db->store('product' , ['name'=>'tea','category_id'=>'1', 'price'=>'5', 'product_pic'=>'./images/0.12204800 1672674506.jpeg','status'=>'Available']);
+// $db->store('product' , ['name'=>'tea','category_id'=>'1', 'price'=>'5', 'product_pic'=>'./images/0.12204800 1672674506.jpeg','status'=>'Available']);
