@@ -1,4 +1,0 @@
-<?php
-require './DataBaseConection.php';
-
-
