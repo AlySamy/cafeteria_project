@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 10, 2023 at 09:16 PM
+-- Generation Time: Jan 11, 2023 at 07:29 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -92,7 +92,7 @@ INSERT INTO `product` (`name`, `category_id`, `price`, `product_pic`, `status`, 
 CREATE TABLE `total_order` (
   `id` int NOT NULL,
   `user_id` int UNSIGNED NOT NULL,
-  `status` enum('Done','Out for delivery','Processing') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Processing',
+  `status` enum('Done','Out for delivery','Processing','Cancel') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Processing',
   `total_price` int NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `notes` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL
@@ -144,6 +144,16 @@ CREATE TABLE `user_room` (
   `user_id` int UNSIGNED NOT NULL,
   `Room_number` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `user_room`
+--
+
+INSERT INTO `user_room` (`id`, `user_id`, `Room_number`) VALUES
+(1, 4, 200),
+(2, 5, 201),
+(3, 6, 202),
+(4, 7, 203);
 
 --
 -- Indexes for dumped tables
@@ -216,7 +226,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `user_room`
 --
 ALTER TABLE `user_room`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
