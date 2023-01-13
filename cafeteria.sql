@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 10, 2023 at 05:21 PM
+-- Generation Time: Jan 13, 2023 at 03:37 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -33,6 +33,13 @@ CREATE TABLE `category` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `category`
+--
+
+INSERT INTO `category` (`id`, `name`, `created_at`) VALUES
+(1, 'Hot Drinks', '2023-01-10 21:10:05');
+
 -- --------------------------------------------------------
 
 --
@@ -46,6 +53,17 @@ CREATE TABLE `order_product` (
   `total_price` int NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `order_product`
+--
+
+INSERT INTO `order_product` (`order_id`, `product_name`, `quantity`, `total_price`, `created_at`) VALUES
+(1, 'tea', 2, 10, '2023-01-10 21:14:47'),
+(2, 'tea', 2, 10, '2023-01-11 18:04:18'),
+(3, 'tea', 2, 10, '2023-01-11 18:05:14'),
+(4, 'coffee', 1, 5, '2023-01-13 14:15:41'),
+(4, 'tea', 1, 5, '2023-01-13 14:15:41');
 
 -- --------------------------------------------------------
 
@@ -62,6 +80,14 @@ CREATE TABLE `product` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `product`
+--
+
+INSERT INTO `product` (`name`, `category_id`, `price`, `product_pic`, `status`, `created_at`) VALUES
+('coffee', 1, 5, '0.12204800 1672674506.jpeg', 'Available', '2023-01-13 14:08:52'),
+('tea', 1, 5, '0.12204800 1672674506.jpeg', 'Available', '2023-01-10 21:10:27');
+
 -- --------------------------------------------------------
 
 --
@@ -71,11 +97,21 @@ CREATE TABLE `product` (
 CREATE TABLE `total_order` (
   `id` int NOT NULL,
   `user_id` int UNSIGNED NOT NULL,
-  `status` enum('Done','Out for delivery','Processing') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Processing',
+  `status` enum('Done','Out for delivery','Processing','Cancel') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Processing',
   `total_price` int NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `notes` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `total_order`
+--
+
+INSERT INTO `total_order` (`id`, `user_id`, `status`, `total_price`, `created_at`, `notes`) VALUES
+(1, 4, 'Done', 10, '2023-01-10 21:14:14', 'two spoons of sugar'),
+(2, 4, 'Done', 10, '2023-01-11 18:03:46', NULL),
+(3, 5, 'Done', 10, '2023-01-11 18:04:54', 'no sugar'),
+(4, 6, 'Done', 10, '2023-01-13 14:06:52', NULL);
 
 -- --------------------------------------------------------
 
@@ -99,7 +135,11 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `profile_pic`, `created_at`, `is_admin`) VALUES
 (1, 'kareem', 'kareem@gmail.com', '123456789', '1651498269474.jpg', '2023-01-08 19:56:48', 1),
-(2, 'fouad', 'fouad@admin.com', '123456789', '1658958628370.jpg', '2023-01-08 19:58:22', 1);
+(2, 'fouad', 'fouad@admin.com', '123456789', '1658958628370.jpg', '2023-01-08 19:58:22', 1),
+(4, 'ahmed', 'ahmed@gmail.com', '12345678', '0.12204800 1672674506.jpeg', '2023-01-10 17:45:31', 0),
+(5, 'ali', 'ali@gmail.com', '12345678', '0.12204800 1672674506.jpeg', '2023-01-10 17:45:31', 0),
+(6, 'alaa', 'alaa@gmail.com', '12345678', '0.12204800 1672674506.jpeg', '2023-01-10 17:45:31', 0),
+(7, 'toka', 'toka@gmail.com', '12345678', '0.12204800 1672674506.jpeg', '2023-01-10 17:45:31', 0);
 
 -- --------------------------------------------------------
 
@@ -112,6 +152,16 @@ CREATE TABLE `user_room` (
   `user_id` int UNSIGNED NOT NULL,
   `Room_number` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `user_room`
+--
+
+INSERT INTO `user_room` (`id`, `user_id`, `Room_number`) VALUES
+(1, 4, 200),
+(2, 5, 201),
+(3, 6, 202),
+(4, 7, 203);
 
 --
 -- Indexes for dumped tables
@@ -135,13 +185,15 @@ ALTER TABLE `order_product`
 -- Indexes for table `product`
 --
 ALTER TABLE `product`
-  ADD PRIMARY KEY (`name`);
+  ADD PRIMARY KEY (`name`),
+  ADD KEY `category_id` (`category_id`);
 
 --
 -- Indexes for table `total_order`
 --
 ALTER TABLE `total_order`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `users`
@@ -165,25 +217,25 @@ ALTER TABLE `user_room`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `total_order`
 --
 ALTER TABLE `total_order`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `user_room`
 --
 ALTER TABLE `user_room`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
@@ -195,6 +247,18 @@ ALTER TABLE `user_room`
 ALTER TABLE `order_product`
   ADD CONSTRAINT `order_product_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `total_order` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `order_product_ibfk_2` FOREIGN KEY (`product_name`) REFERENCES `product` (`name`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+--
+-- Constraints for table `product`
+--
+ALTER TABLE `product`
+  ADD CONSTRAINT `product_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+--
+-- Constraints for table `total_order`
+--
+ALTER TABLE `total_order`
+  ADD CONSTRAINT `total_order_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Constraints for table `user_room`
