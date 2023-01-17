@@ -1,0 +1,16 @@
+/* start login */
+
+.login .login_backimg{
+    background-image: url(../images/background/5.jpg);
+    height: 100vh;
+  
+  }
+  
+  .login .login_backimg .overlay{
+    height: 100%;
+    background-color: #00000030;
+  
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  }
