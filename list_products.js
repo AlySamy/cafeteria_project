@@ -39,11 +39,16 @@ function createRow(obj) {
   tableBody.appendChild(newRow);
 
   updateImg.addEventListener("click", () => {
-    postDataFprEdit(obj.name, obj.price, obj.category_id, obj.pic);
-    window.open("update_product.html", "_self");
-
+    // postDataFprEdit(obj.name, obj.price, obj.category_id, obj.pic);
+    // window.open("update_product.html", "_self");
     // sendDatatoUpdate(obj.name, obj.price);
     // window.open("update_product.html");
+    // console.log("hello");
+    document.getElementsByName("name")[0].value = obj.name;
+    document.getElementsByName("price")[0].value = obj.price;
+    document.getElementsByName("status")[0].value = obj.status;
+    document.getElementsByName("img")[0].value = obj.product_pic;
+    getAllCategory();
   });
 
   deleteImg.addEventListener("click", () => {
@@ -53,19 +58,17 @@ function createRow(obj) {
 
 function createUpdateElement() {
   let updateImg = document.createElement("i");
-  updateImg.classList.add("btn");
-  updateImg.classList.add("btn-success");
-  updateImg.classList.add("fa-solid");
-  updateImg.classList.add("fa-pen-to-square");
+  updateImg.classList.add("btn", "editBtn", "mx-2");
+  updateImg.innerHTML = "edit";
+  updateImg.setAttribute("data-bs-target", "#exampleModal");
+  updateImg.setAttribute("data-bs-toggle", "modal");
   return updateImg;
 }
 
 function createDeleteElement() {
   let deleteImg = document.createElement("i");
-  deleteImg.classList.add("btn");
-  deleteImg.classList.add("btn-danger");
-  deleteImg.classList.add("fa-solid");
-  deleteImg.classList.add("fa-trash");
+  deleteImg.classList.add("btn", "btn-danger", "mx-2");
+  deleteImg.innerHTML = "delete";
   return deleteImg;
 }
 
@@ -108,23 +111,66 @@ function cheackIFdeletedElement(obj) {
   }
 }
 
-async function postDataFprEdit(name, price, category, pic) {
-  let Data = {
-    productName: `${name}`,
-    productPrice: `${price}`,
-    categoryID: `${category}`,
-    categorypic: `${pic}`,
-  };
-  let result = await fetch(
-    "http://localhost:8080/cafeteria_project/php/updateProductData.php",
+// async function postDataFprEdit(name, price, category, pic) {
+//   let Data = {
+//     productName: `${name}`,
+//     productPrice: `${price}`,
+//     categoryID: `${category}`,
+//     categorypic: `${pic}`,
+//   };
+//   let result = await fetch(
+//     "http://localhost:8080/cafeteria_project/php/updateProductData.php",
 
-    {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(Data),
-    }
+//     {
+//       method: "post",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify(Data),
+//     }
+//   );
+//   let data = await result.json();
+// }]
+// add catagory for edit
+let select = document.getElementById("category");
+async function getAllCategory() {
+  let result = await fetch(
+    "http://localhost:8080/php%20cafitiria/php/getAllCategory.php"
   );
   let data = await result.json();
+  // console.log(data);
+  for (const key in data) {
+    let opteion = document.createElement("option");
+    console.log(key);
+    opteion.innerHTML = data[key].name;
+    opteion.setAttribute("value", data[key].id);
+    select.appendChild(opteion);
+  }
+  // manpulateResponse(data);
 }
+// getAllCategory();
+
+// function manpulateResponse(data) {
+//   data.forEach((obj) => {
+//     // createNewOption(obj);
+//     console.log(obj);
+//   });
+// }
+
+// let select = document.getElementById("category");
+// function createNewOption(obj) {
+// let opteion = document.createElement("option");
+//   let idSpan = document.createElement("span");
+//   idSpan.className = "d-none";
+// obj.forEach((ob) => {
+// console.log(ob);
+// opteion.innerHTML = object.name;
+// opteion.setAttribute("value", object.id);
+// select.appendChild(opteion);
+// });
+
+// console.log(obj[0].name);
+//   console.log(obj.name);
+//   opteion.innerHTML = obj.id;
+//   opteion.appendChild(idSpan);
+// }
