@@ -1,6 +1,6 @@
 async function getAllCategory() {
   let result = await fetch(
-    "http://localhost:8080/cafeteria_project/php/getAllCategory.php"
+    "http://localhost:8080/php%20cafitiria/php/getAllCategory.php"
   );
   let data = await result.json();
 

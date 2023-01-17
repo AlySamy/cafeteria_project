@@ -97,10 +97,10 @@ class DB
             return $result;
     }
         //to do
-    public function udateproductDAta($name,$price,$pic,$categoryId){
+    public function udateproductData($id,$name,$price,$pic,$status,$categoryId){
 
-        $query="UPDATE product SET name='$name',price=$price, product_pic='$pic',category_id=$categoryId
-         WHERE name='$name'";
+        $query="UPDATE product SET name='$name',price=$price,product_pic='$pic',status='$status',category_id=$categoryId
+         WHERE id=$id";
         $sql=$this->con->prepare($query);
         $sql->execute();
         
@@ -113,6 +113,34 @@ class DB
         
     }    
 
+    public function getproductId($productName){
+        $query = "SELECT id FROM product where name = '$productName'";
+        $sql = $this->con->prepare($query);
+        $sql->execute();
+        $data = $sql->fetch(PDO::FETCH_ASSOC);
+        return $data;       
+    }
+
+// catagory validate
+
+    public function getOneCatagory($tableName,$catagoryName)
+    {
+        $query = "SELECT * FROM $tableName where name = '$catagoryName'";
+        $sql = $this->con->prepare($query);
+        $sql->execute();
+        $data = $sql->fetch(PDO::FETCH_ASSOC);
+        return $data;
+    }
+
+    public function validatecatagoryName($catagoryName){
+
+        $result=$this->getOneProduct('product',$catagoryName);
+        if (gettype($result)=='array'){
+            return false;
+        }
+        
+        return true;
+    }
 
 
     public function addCategory($catagoryName){
