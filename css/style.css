@@ -1,5 +1,6 @@
+/*for style rigester  for register massage error*/
 /* Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Mrs+Saint+Delafield&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Mrs+Saint+Delafield&display=swap");
 /* 
 main colors
 #CA8E46  
@@ -10,90 +11,34 @@ main colors
 #151517
 
 */
-*{
-margin: 0;
-padding: 0;
-box-sizing: border-box;
-font-family: "Montserrat";
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat";
 }
 
 /*------ navbar ----- */
-.navbar-expand-lg{
-  background-color:#000000f7;
+.navbar-expand-lg {
+  background-color: #000000f7;
 }
-nav .logo{
-  color: #CA8E46;
+nav .logo {
+  color: #ca8e46;
   margin-left: 10px;
   font-weight: 600;
   font-size: 40px;
   font-family: "Mrs Saint Delafield";
   letter-spacing: 2px;
 }
-nav .nav-item a{
+nav .nav-item a {
   color: #fff;
   margin-right: 15px;
-  font-weight: 500; 
+  font-weight: 500;
 }
-nav .nav-item a:hover{
-  color: #CA8E46;
+nav .nav-item a:hover {
+  color: #ca8e46;
 }
-nav .btn { 
-    text-align: center;
-    color: #fff;
-    border-radius: 0px;
-    outline: 0;
-    font-weight: 800;
-    text-decoration: none;
-    padding: 8px 30px;
-    font-size: 12px;
-    font-weight: 600;
-    border: none;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    background-color: #CA8E46;
-}
-nav .btn:hover{
-  color: #CA8E46;
-  background-color: white;
-  transition: .5s all ease-in-out;
-}
-
-/* ---- header ----- */
-header img{
-  height:100%;
-  width: 100%;
-}
-header .carousel-item{
-  
-  height: 90vh;
-}
-
-.carousel-item .content {
-position: absolute;
-top: 150px;
-left: 200px;
-width: 60%;
-}
-
-.carousel-item h3{
-  font-size: 110px;
-  line-height: .75em;
-  margin-bottom: 20px;
-  font-family: "Mrs Saint Delafield";
-  color: #CA8E46;
-  font-weight: 400;
-
-}
-
-.carousel-item h1 {
-  font-size: 70px;
-color: #fff;
-margin-bottom: 40px;
-font-weight: 700;
-letter-spacing: 5px;
-text-transform: uppercase;
-}
-.carousel-item .btn { 
+nav .btn {
   text-align: center;
   color: #fff;
   border-radius: 0px;
@@ -106,83 +51,78 @@ text-transform: uppercase;
   border: none;
   text-transform: uppercase;
   letter-spacing: 2px;
-  background-color: #CA8E46;
+  background-color: #ca8e46;
 }
-.carousel-item .btn:hover{
-  color: #CA8E46;
+nav .btn:hover {
+  color: #ca8e46;
   background-color: white;
-  transition: .5s all ease-in-out;
+  transition: 0.5s all ease-in-out;
 }
 
-/* ----- about -------- */
-.about h5 span{
-  font-size: 100px;
-  line-height: .75em;
-  margin-bottom: 20px;
-  font-family: "Mrs Saint Delafield";
-  color: #CA8E46;
-  font-weight: 400;
-}
-.about h2{
-  font-size: 35px;
-  color: #fff;
-  margin-bottom: 40px;
-  margin-top: -20px;
-  font-weight: 700;
-  letter-spacing: 7px;  
-}
-.about p{
-  color:#999999
-}
+/* start login */
 
-/* ----- location --------- */
-
-.backimg{
-  background-image: url(../images/background/3.jpg);
-  height: 70vh;
+.login .login_backimg {
+  background-image: url(../images/background/5.jpg);
+  height: 100vh;
 }
-.backimg .overlay .location{
-  position: relative;
-  width: 100%;
-  top: 29%;
-}
-.backimg .overlay{
+.login .login_backimg .overlay {
   height: 100%;
   background-color: #00000030;
 }
-.backimg .overlay .location i{
-  font-size: 30px;
-  color: #CA8E46;
-  padding-bottom: 20px;
-} 
-.location span{
-  color:#999999;
+.login .register {
+  color: #ca8e46;
+  text-decoration: none;
+  font-size: 16px;
+}
+.login .forgot {
+  color: #fff3cd;
+  text-decoration: none;
+  font-size: 16px;
+}
+.login .forgot:hover {
+  text-decoration: underline;
+}
+.form {
+  background-color: #000000c9;
+  border-radius: 20px;
+  box-shadow: 0px 1px 6px -1px rgba(202, 142, 70, 0.38);
+}
+.form label {
+  color: #ca8e46;
+  font-size: 17px;
+  font-weight: 500;
+}
+.form .btn {
+  margin: 10px 5px;
+  text-align: center;
+  color: #fff;
+  border-radius: 10px;
+  outline: 0;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 8px 25px;
   font-size: 15px;
-  
+  font-weight: 500;
+  border: none;
+  background-color: #ca8e46;
 }
-
-/* ------ quote --------- */
-.quote h2{
-  font-size: 27px;
-  font-weight: 400;
-  line-height: 1.5;
-
+.invalid-feedback {
+  color: #d42738;
 }
-
-
-/* ----- footer ------ */
-.footer-i i{
-    color: white;
-    background-color: #CA8E46;
-   
-    border-radius: 50%;
-    margin: 4px;
-    padding: 15px;
+.active {
+  display: block !important;
 }
-.footer-i i:hover{
-  color: #CA8E46;
+/*FOOTER*/
+.footer-i i {
+  color: white;
+  background-color: #ca8e46;
+
+  border-radius: 50%;
+  margin: 4px;
+  padding: 15px;
+}
+.footer-i i:hover {
+  color: #ca8e46;
   background-color: white;
-  transition: .5s all ease-in-out;
+  transition: 0.5s all ease-in-out;
 }
-
-/* -------------------------------------------------------------------------- */
