@@ -3,6 +3,7 @@ require("./dbclasses.php");
 $productName=$_REQUEST['name'];
 $productprice=$_REQUEST['price'];
 $productStatus=$_REQUEST['status'];
+$productId=$_REQUEST['id'];
 // $catagoryId=$_REQUEST['category'];
 $categoryPic=$_FILES['img'];
 
@@ -35,16 +36,17 @@ move_uploaded_file($file_path, $categoryPic);
 //categoryPic
 
 $db=new DB($con);
-$productID = $db->getproductId($productName);
+// $productID = $db->getproductId($productName);
 
-$productID =$productID['id'];
-if($productID ){
-    $result=$db->udateproductData($productID,$productName,$productprice,$categoryPic,$productStatus,1);
-    ("location:../all_product.html");
-}else{
+// $productID =$productID['id'];
+if($productId ){
+    $result=$db->udateproductData($productId,$productName,$productprice,$categoryPic,$productStatus,1);
+    header('Location:../all_product.html');
+    }
+else{
 
     $results= $db->addProduct($productName,$productprice,$categoryPic,1 );
-    ("location:../all_product.html");
+    header("location:../all_product.html");
 }
 
 

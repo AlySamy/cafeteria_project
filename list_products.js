@@ -47,7 +47,9 @@ function createRow(obj) {
     document.getElementsByName("name")[0].value = obj.name;
     document.getElementsByName("price")[0].value = obj.price;
     document.getElementsByName("status")[0].value = obj.status;
-    document.getElementsByName("img")[0].value = obj.product_pic;
+    // document.getElementsByName("img")[0].value = obj.product_pic;
+    document.getElementsByName("id")[0].value = obj.id;
+    console.log(obj.id);
     getAllCategory();
   });
 
@@ -138,7 +140,7 @@ async function getAllCategory() {
     "http://localhost:8080/php%20cafitiria/php/getAllCategory.php"
   );
   let data = await result.json();
-  // console.log(data);
+  console.log(data);
   for (const key in data) {
     let opteion = document.createElement("option");
     console.log(key);
