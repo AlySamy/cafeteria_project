@@ -3,7 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
+<<<<<<< HEAD
 -- Generation Time: Jan 18, 2023 at 09:50 AM
+=======
+-- Generation Time: Jan 13, 2023 at 03:37 PM
+>>>>>>> fff474d823362f2b65bcda885636c64160283823
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -60,12 +64,21 @@ CREATE TABLE `order_product` (
 -- Dumping data for table `order_product`
 --
 
+<<<<<<< HEAD
 INSERT INTO `order_product` (`order_id`, `product_id`, `quantity`, `total_price`, `created_at`) VALUES
 (1, 1, 1, 10, '2023-01-17 15:51:12'),
 (2, 2, 1, 5, '2023-01-17 15:51:12'),
 (2, 3, 1, 5, '2023-01-17 15:51:12'),
 (3, 4, 2, 10, '2023-01-17 15:51:12'),
 (4, 5, 1, 10, '2023-01-17 15:51:12');
+=======
+INSERT INTO `order_product` (`order_id`, `product_name`, `quantity`, `total_price`, `created_at`) VALUES
+(1, 'tea', 2, 10, '2023-01-10 21:14:47'),
+(2, 'tea', 2, 10, '2023-01-11 18:04:18'),
+(3, 'tea', 2, 10, '2023-01-11 18:05:14'),
+(4, 'coffee', 1, 5, '2023-01-13 14:15:41'),
+(4, 'tea', 1, 5, '2023-01-13 14:15:41');
+>>>>>>> fff474d823362f2b65bcda885636c64160283823
 
 -- --------------------------------------------------------
 
@@ -87,6 +100,7 @@ CREATE TABLE `product` (
 -- Dumping data for table `product`
 --
 
+<<<<<<< HEAD
 INSERT INTO `product` (`id`, `name`, `category_id`, `price`, `product_pic`, `status`, `created_at`) VALUES
 (1, 'choclata', 2, 123, '1.jpg', 'Not available', '2023-01-11 20:29:35'),
 (2, 'dd', 1, 40, '1.jpg', 'Not available', '2023-01-15 16:43:12'),
@@ -97,6 +111,11 @@ INSERT INTO `product` (`id`, `name`, `category_id`, `price`, `product_pic`, `sta
 (7, 'test', 2, 1000, '../images/products/1673802247.jpeg', 'Not available', '2023-01-15 17:04:07'),
 (8, 's', 1, 22, '../images/products/1673896913.jpeg', 'Not available', '2023-01-16 19:21:53'),
 (9, 'x', 1, 12, '1673897013.jpeg', 'Available', '2023-01-16 19:23:33');
+=======
+INSERT INTO `product` (`name`, `category_id`, `price`, `product_pic`, `status`, `created_at`) VALUES
+('coffee', 1, 5, '0.12204800 1672674506.jpeg', 'Available', '2023-01-13 14:08:52'),
+('tea', 1, 5, '0.12204800 1672674506.jpeg', 'Available', '2023-01-10 21:10:27');
+>>>>>>> fff474d823362f2b65bcda885636c64160283823
 
 -- --------------------------------------------------------
 
@@ -120,8 +139,13 @@ CREATE TABLE `total_order` (
 INSERT INTO `total_order` (`id`, `user_id`, `status`, `total_price`, `created_at`, `notes`) VALUES
 (1, 4, 'Done', 10, '2023-01-10 21:14:14', 'two spoons of sugar'),
 (2, 4, 'Done', 10, '2023-01-11 18:03:46', NULL),
+<<<<<<< HEAD
 (3, 5, 'Done', 10, '2023-01-11 18:04:54', 'sugar'),
 (4, 6, 'Done', 10, '2023-01-13 14:06:52', 'one');
+=======
+(3, 5, 'Done', 10, '2023-01-11 18:04:54', 'no sugar'),
+(4, 6, 'Done', 10, '2023-01-13 14:06:52', NULL);
+>>>>>>> fff474d823362f2b65bcda885636c64160283823
 
 -- --------------------------------------------------------
 
@@ -146,10 +170,10 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `profile_pic`, `created_at`, `is_admin`) VALUES
 (1, 'kareem', 'kareem@gmail.com', '123456789', '1651498269474.jpg', '2023-01-08 19:56:48', 1),
 (2, 'fouad', 'fouad@admin.com', '123456789', '1658958628370.jpg', '2023-01-08 19:58:22', 1),
-(4, 'ahmed', 'ahmed@gmail.com', '12345678', './images/0.12204800 1672674506.jpeg', '2023-01-10 17:45:31', 0),
-(5, 'ali', 'ali@gmail.com', '12345678', './images/0.12204800 1672674506.jpeg', '2023-01-10 17:45:31', 0),
-(6, 'alaa', 'alaa@gmail.com', '12345678', './images/0.12204800 1672674506.jpeg', '2023-01-10 17:45:31', 0),
-(7, 'toka', 'toka@gmail.com', '12345678', './images/0.12204800 1672674506.jpeg', '2023-01-10 17:45:31', 0);
+(4, 'ahmed', 'ahmed@gmail.com', '12345678', '0.12204800 1672674506.jpeg', '2023-01-10 17:45:31', 0),
+(5, 'ali', 'ali@gmail.com', '12345678', '0.12204800 1672674506.jpeg', '2023-01-10 17:45:31', 0),
+(6, 'alaa', 'alaa@gmail.com', '12345678', '0.12204800 1672674506.jpeg', '2023-01-10 17:45:31', 0),
+(7, 'toka', 'toka@gmail.com', '12345678', '0.12204800 1672674506.jpeg', '2023-01-10 17:45:31', 0);
 
 -- --------------------------------------------------------
 
@@ -195,7 +219,11 @@ ALTER TABLE `order_product`
 -- Indexes for table `product`
 --
 ALTER TABLE `product`
+<<<<<<< HEAD
   ADD PRIMARY KEY (`id`),
+=======
+  ADD PRIMARY KEY (`name`),
+>>>>>>> fff474d823362f2b65bcda885636c64160283823
   ADD KEY `category_id` (`category_id`);
 
 --
@@ -269,6 +297,12 @@ ALTER TABLE `order_product`
 --
 ALTER TABLE `product`
   ADD CONSTRAINT `product_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`);
+
+--
+-- Constraints for table `product`
+--
+ALTER TABLE `product`
+  ADD CONSTRAINT `product_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Constraints for table `total_order`
