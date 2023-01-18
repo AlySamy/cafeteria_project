@@ -62,7 +62,7 @@ if($result==false){
 
  if(!$results){
       echo json_encode(['status' => 'product alerday exists']);
-      header("location:../list_products.html");
+      header("location:../all_product.html");
       exit();
     } 
     echo json_encode(['status' => 'added successfully']);

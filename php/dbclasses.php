@@ -123,9 +123,9 @@ class DB
 
 // catagory validate
 
-    public function getOneCatagory($tableName,$catagoryName)
+    public function getOneCatagory($catagoryName)
     {
-        $query = "SELECT * FROM $tableName where name = '$catagoryName'";
+        $query = "SELECT * FROM category where name = '$catagoryName'";
         $sql = $this->con->prepare($query);
         $sql->execute();
         $data = $sql->fetch(PDO::FETCH_ASSOC);
@@ -134,7 +134,7 @@ class DB
 
     public function validatecatagoryName($catagoryName){
 
-        $result=$this->getOneProduct('product',$catagoryName);
+        $result=$this->getOneProduct($catagoryName);
         if (gettype($result)=='array'){
             return false;
         }
