@@ -12,21 +12,21 @@ $categoryPic=$_FILES['img'];
 
 $imgSize = $categoryPic['size'];
 if ($imgSize > 2000000) {
-    setcookie('errors', json_encode(['image' => 'size of image bigger than 2MG']));
+    setcookie('errors', json_encode(['image' => 'size of image bigger than 2MG']),0,'/');
     header("location:../all_product.html");
     exit();
 } else {
-    setcookie('errors', "", time() - 60);
+    setcookie('errors','', -1, '/');
 }
 
 $allowed_image_extension = array('png', 'jpg', 'jpeg');
 $imgExtension = explode('/', $categoryPic['type'])[1];
 if (!in_array($imgExtension, $allowed_image_extension)) {
-    setcookie("errors", json_encode(['image' => 'extension image is not valid']));
+    setcookie("errors", json_encode(['image' => 'extension image is not valid']),0,'/');
     header("location:../all_product.html");
     exit();
 } else {
-    setcookie("errors", "", time() - 60);
+    setcookie('errors','', -1, '/');
 }
  $categoryPic=$_FILES['img'];
 $file_path = $categoryPic['tmp_name'];
