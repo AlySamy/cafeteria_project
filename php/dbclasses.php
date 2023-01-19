@@ -7,15 +7,11 @@ class DB
     public function __construct($con)
     {
         $this->con = $con;
-<<<<<<< HEAD
-=======
-        
->>>>>>> fff474d823362f2b65bcda885636c64160283823
+
     }
     // get all users
     public function index($tableName)
     {
-<<<<<<< HEAD
         try{
             $query = "SELECT * FROM $tableName";
             $sql = $this->con->prepare($query);
@@ -25,19 +21,16 @@ class DB
         }catch (PDOException $e) {
             echo "Error: ".$e->getMessage();
         }
-=======
         $query = "SELECT * FROM $tableName";
         $sql = $this->con->prepare($query);
         $sql->execute();
         $data = $sql->fetchAll(PDO::FETCH_ASSOC);
->>>>>>> fff474d823362f2b65bcda885636c64160283823
         
         return $data;
     }
     // get single user by id
     public function show($tableName, $id)
     {
-<<<<<<< HEAD
         try{
             $query = "SELECT * FROM $tableName where id = $id";
             $sql = $this->con->prepare($query);
@@ -47,14 +40,12 @@ class DB
         }catch (PDOException $e) {
             echo "Error: ".$e->getMessage();
         }
-=======
         $query = "SELECT * FROM $tableName where id = $id";
         $sql = $this->con->prepare($query);
         $sql->execute();
         $data = $sql->fetch(PDO::FETCH_ASSOC);
         
         return $data;
->>>>>>> fff474d823362f2b65bcda885636c64160283823
     }
     // edit user
     public function update($tableName, $id, $data)
