@@ -26,7 +26,7 @@
         <div class="overlay d-flex justify-content-center align-items-center">
           <div class="form text-white p-5 col-md-6">
             <form
-              action="./php/save_product.php"
+              action="php/save_product.php"
               method="post"
               enctype="multipart/form-data"
               class="d-flex flex-wrap col-12"
@@ -72,62 +72,6 @@
   Launch demo modal
 </button> -->
 
-              <!-- Modal -->
-              <div
-                class="modal fade"
-                id="exampleModal"
-                tabindex="-1"
-                aria-labelledby="exampleModalLabel"
-                aria-hidden="true"
-              >
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header border-0">
-                      <h1 class="modal-title fs-5" id="exampleModalLabel">
-                        Modal title
-                      </h1>
-                      <button
-                        type="button"
-                        class="btn-close"
-                        data-bs-dismiss="modal"
-                        aria-label="Close"
-                      ></button>
-                    </div>
-                    <div class="modal-body">
-                      <form
-                        action="./php/save_catagory.php"
-                        method="post"
-                        enctype="multipart/form-data"
-                      >
-                        <div class="mb-3 col-md-12 px-2">
-                          <label for="username" class="form-label text-black"
-                            >Category Name</label
-                          >
-                          <input
-                            type="text"
-                            name="name"
-                            class="form-control"
-                            required
-                          />
-                          <p class="invalid-feedback"></p>
-                        </div>
-                        <div class="modal-footer border-0">
-                          <button
-                            type="button"
-                            class="btn btn-secondary"
-                            data-bs-dismiss="modal"
-                          >
-                            Close
-                          </button>
-                          <button type="submit" class="btn btn-primary">
-                            Add
-                          </button>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-              </div>
               <div class="mb-3 col-md-12 px-2">
                 <label for="image" class="form-label">Choose Image</label>
                 <input type="file" name="image" class="form-control" required />
@@ -139,6 +83,63 @@
               </div>
               <!-- <div class="valid-feedback" name="success">Register Success</div> -->
             </form>
+
+            <!-- Modal -->
+            <div
+              class="modal fade"
+              id="exampleModal"
+              tabindex="-1"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header border-0">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">
+                      Modal title
+                    </h1>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div class="modal-body">
+                    <form
+                      action="php/save_catagory.php"
+                      method="post"
+                      enctype="multipart/form-data"
+                    >
+                      <div class="mb-3 col-md-12 px-2">
+                        <label for="catagory" class="form-label text-black"
+                          >Category Name</label
+                        >
+                        <input
+                          type="text"
+                          name="catagory"
+                          class="form-control"
+                          required
+                        />
+                        <p class="invalid-feedback"></p>
+                      </div>
+                      <div class="modal-footer border-0">
+                        <button
+                          type="button"
+                          class="btn btn-secondary"
+                          data-bs-dismiss="modal"
+                        >
+                          Close
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                          Add
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -134,7 +134,7 @@ class DB
 
     public function validatecatagoryName($catagoryName){
 
-        $result=$this->getOneProduct($catagoryName);
+        $result=$this->getOneCatagory($catagoryName);
         if (gettype($result)=='array'){
             return false;
         }
