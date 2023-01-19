@@ -6,7 +6,6 @@ class DB
     protected $con;
     public function __construct($con){
         $this->con = $con;
-        var_dump($this->con);
     }
     // get all users
     public function index($tableName)
@@ -16,7 +15,6 @@ class DB
             $sql = $this->con->prepare($query);
             $sql->execute();
             $data = $sql->fetchAll(PDO::FETCH_ASSOC);
-            var_dump($data);
             return $data;
         }catch (PDOException $e) {
             echo "Error: ".$e->getMessage();
@@ -31,7 +29,6 @@ class DB
             $sql = $this->con->prepare($query);
             $sql->execute();
             $data = $sql->fetch(PDO::FETCH_ASSOC);
-            var_dump($data);
             return $data;
         }catch (PDOException $e) {
             echo "Error: ".$e->getMessage();
@@ -79,6 +76,53 @@ class DB
             echo "Error: ".$e->getMessage();
         }
     }
+
+
+    // get products for home page
+    public function getProducts($tableName)
+    {
+        try{
+            $query = "SELECT product.name,price,product_pic FROM `product` , `category` WHERE product.category_id=category.id ORDER BY category_id;";
+            $sql = $this->con->prepare($query);
+            $sql->execute();
+            $data = $sql->fetchAll(PDO::FETCH_ASSOC);
+            return $data;
+        }catch (PDOException $e) {
+            echo "Error: ".$e->getMessage();
+        }
+    }
+
+    //search in home page
+    public function paginationSearch($tableName,$word)
+    {
+        try{
+            $query = "SELECT name,price,product_pic FROM `product` where name like '%$word%';";
+            $sql = $this->con->prepare($query);
+            $sql->execute();
+            $data = $sql->fetchAll(PDO::FETCH_ASSOC);
+            return $data;
+        }catch (PDOException $e) {
+            echo "Error: ".$e->getMessage();
+        }
+    }
+
+    //get latest order
+     public function getLatestOrder($id)
+     {
+        try{
+            $query = "SELECT * FROM product where id=any(
+                SELECT product_id FROM order_product where order_id=(
+                SELECT id FROM total_order where user_id=$id ORDER BY created_at DESC LIMIT 1));;";
+            $sql = $this->con->prepare($query);
+            $sql->execute();
+            $data = $sql->fetchAll(PDO::FETCH_ASSOC);
+            return $data;
+        }catch (PDOException $e) {
+            echo "Error: ".$e->getMessage();
+        }
+     }
+
+    
 }
 
 $db = new DB($con);

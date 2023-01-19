@@ -1,0 +1,62 @@
+.pagination li
+{
+    margin: 10px;
+    cursor: pointer;
+}
+
+.card
+{
+    border: 0px;
+}
+.pagination li a
+{
+    background-color: transparent;
+    padding: 20px;
+    color: crimson;
+    border: none;
+    font-size: 20px;
+}
+.card img
+{
+    height: 300px;
+}
+
+.card-body
+{
+    background-color: rgb(234 234 234);
+}
+.card-body h4
+{
+    font-family: 'Moon Dance', cursive;
+    padding: 10px;
+}
+
+.card-body p
+{
+    font-family: 'Moon Dance', cursive;
+    padding: 0px 10px 10px 10px; 
+}
+
+.form-control
+{
+    width: 50%;
+}
+
+.hidePagination
+{
+    background-color: brown !important;
+    display: none !important;
+}
+
+#row1
+{
+    border-bottom: 10px solid crimson;
+}
+
+#cart
+{
+    background-color: black;
+    height: 600px;
+    /* delete the margin*/
+    margin-bottom: 50px;
+}
