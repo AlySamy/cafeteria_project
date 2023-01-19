@@ -1,7 +1,5 @@
 async function getAllCategory() {
-  let result = await fetch(
-    "http://localhost:8080/php%20cafitiria/php/getAllCategory.php"
-  );
+  let result = await fetch("./php/getAllCategory.php");
   let data = await result.json();
 
   manpulateResponse(data);

@@ -46,7 +46,7 @@ if (!in_array($imgExtension, $allowed_image_extension)) {
 $file_path = $categoryPic['tmp_name'];
 $categoryPic = 'images/products/' . time() . '.' . explode('/', mime_content_type($file_path))[1];
 move_uploaded_file($file_path, $categoryPic);
-// $productPic=time() . '.' . explode('/', mime_content_type($file_path))[1];
+$productPic=time() . '.' . explode('/', mime_content_type($file_path))[1];
 
 
 
@@ -59,7 +59,7 @@ if($result==false){
 } else {
     setcookie('errors', "", time() - 60);
     
-    $results= $db->addProduct($productNAme,$productPrice,$categoryPic,$categoryId );
+    $results= $db->addProduct($productNAme,$productPrice,$productPic,$categoryId );
 
  if(!$results){
       echo json_encode(['status' => 'product alerday exists']);

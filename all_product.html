@@ -19,6 +19,7 @@
 
 <body>
   <div class="all_products">
+    <div class="bg-black ">
     <!-- Start Navbar -->
     <nav class="navbar navbar-expand-lg ">
       <div class="container">
@@ -54,10 +55,18 @@
       </div>
     </nav>
     <!-- End Navbar -->
+    <div class="container py-5 d-flex flex-wrap justify-content-between col-12">
+      <div class="col-3">
+        <h1 class="text-white">All Users</h1>
+      </div>
+      <div class="col-3"><button class="btn addUser float-end">Add User</button></div>
 
+    </div>
 
     <!-- Start user table -->
     <section class="bg-black usertable  d-flex justifiy-content-center align-items-center">
+
+   
       <div class="bg-white w-75 mx-auto text-center py-3 rounded-4">
         <table class="table table-hover ">
           <thead>
@@ -139,7 +148,6 @@
         </div>
       </div>
     </div>
-
     <!--End Form Modal -->
 
     <!-- Start pagination -->
@@ -152,7 +160,7 @@
     </div>
 
     <!-- End pagination -->
-
+  </div>
 
     <!-- Start Footer -->
     <footer class="py-4 bg-black text-white">
@@ -173,7 +181,7 @@
     <!-- End Footer -->
   </div>
 
-  <script src="list_products.js"></script>
+  <script src="js/list_products.js"></script>
   <!-- <script src="list_catagory.js"></script> -->
 </body>
 

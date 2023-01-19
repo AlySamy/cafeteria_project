@@ -1,7 +1,5 @@
 async function getAllProducts() {
-  let result = await fetch(
-    "http://localhost:8080/cafeteria_project/php/list_product.php"
-  );
+  let result = await fetch("./php/list_product.php");
   let data = await result.json();
   manpulateResponse(data);
 }
@@ -39,11 +37,6 @@ function createRow(obj) {
   tableBody.appendChild(newRow);
 
   updateImg.addEventListener("click", () => {
-    // postDataFprEdit(obj.name, obj.price, obj.category_id, obj.pic);
-    // window.open("update_product.html", "_self");
-    // sendDatatoUpdate(obj.name, obj.price);
-    // window.open("update_product.html");
-    // console.log("hello");
     document.getElementsByName("name")[0].value = obj.name;
     document.getElementsByName("price")[0].value = obj.price;
     document.getElementsByName("status")[0].value = obj.status;
@@ -95,16 +88,13 @@ async function deletProduct(productId) {
   let product = {
     productToDelete: `${productId}`,
   };
-  let result = await fetch(
-    "http://localhost:8080/cafeteria_project/php/delete_product.php",
-    {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(product),
-    }
-  );
+  let result = await fetch("./php/delete_product.php", {
+    method: "post",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(product),
+  });
   let data = await result.json();
   cheackIFdeletedElement(data);
 }
@@ -138,9 +128,7 @@ function cheackIFdeletedElement(obj) {
 // add catagory for edit
 let select = document.getElementById("category");
 async function getAllCategory() {
-  let result = await fetch(
-    "http://localhost:8080/php%20cafitiria/php/getAllCategory.php"
-  );
+  let result = await fetch("./php/getAllCategory.php");
   let data = await result.json();
   console.log(data);
   for (const key in data) {
