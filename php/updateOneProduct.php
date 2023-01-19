@@ -4,7 +4,7 @@ $productName=$_REQUEST['name'];
 $productprice=$_REQUEST['price'];
 $productStatus=$_REQUEST['status'];
 $productId=$_REQUEST['id'];
-// $catagoryId=$_REQUEST['category'];
+$catagoryId=$_REQUEST['category'];
 $categoryPic=$_FILES['img'];
 
 
@@ -30,8 +30,10 @@ if (!in_array($imgExtension, $allowed_image_extension)) {
 }
  $categoryPic=$_FILES['img'];
 $file_path = $categoryPic['tmp_name'];
-$categoryPic = 'images/products/' . time() . '.' . explode('/', mime_content_type($file_path))[1];
+$categoryPic = '../images/products/' . time() . '.' . explode('/', mime_content_type($file_path))[1];
 move_uploaded_file($file_path, $categoryPic);
+
+$catagorypicuplode= time() . '.' . explode('/', mime_content_type($file_path))[1];
 
 //categoryPic
 
@@ -40,12 +42,12 @@ $db=new DB($con);
 
 // $productID =$productID['id'];
 if($productId ){
-    $result=$db->udateproductData($productId,$productName,$productprice,$categoryPic,$productStatus,1);
+    $result=$db->udateproductData($productId,$productName,$productprice,$catagorypicuplode,$productStatus,$catagoryId);
     header('Location:../all_product.html');
     }
 else{
 
-    $results= $db->addProduct($productName,$productprice,$categoryPic,1 );
+    $results= $db->addProduct($productName,$productprice,$categoryPic,$catagoryId );
     header("location:../all_product.html");
 }
 

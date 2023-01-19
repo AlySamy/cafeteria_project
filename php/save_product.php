@@ -44,7 +44,7 @@ if (!in_array($imgExtension, $allowed_image_extension)) {
 }
  $categoryPic=$_FILES['image'];
 $file_path = $categoryPic['tmp_name'];
-$categoryPic = 'images/products/' . time() . '.' . explode('/', mime_content_type($file_path))[1];
+$categoryPic = '../images/products/' . time() . '.' . explode('/', mime_content_type($file_path))[1];
 move_uploaded_file($file_path, $categoryPic);
 $productPic=time() . '.' . explode('/', mime_content_type($file_path))[1];
 
