@@ -55,3 +55,9 @@
   color: white;
   background-color: #edd19033;
 }
+.invalid-feedback {
+  color: #d42738;
+}
+.active {
+  display: block !important;
+}

@@ -22,7 +22,9 @@ function createRow(obj) {
   let updateImg = createUpdateElement();
   let deleteImg = createDeleteElement();
   let img = document.createElement("img");
-  img.src = `${obj.product_pic}`;
+  img.setAttribute("src", `./images/products/${obj.product_pic}`);
+  img.style.width = "30px";
+  img.height.width = "30px";
   console.log(`${obj.product_pic}`);
   productName.innerHTML = obj.name;
   productPrice.innerHTML = obj.price;

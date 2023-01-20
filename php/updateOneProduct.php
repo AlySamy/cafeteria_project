@@ -1,5 +1,6 @@
 <?php
 require("./dbclasses.php");
+$db=new DB($con);
 $productName=$_REQUEST['name'];
 $productprice=$_REQUEST['price'];
 $productStatus=$_REQUEST['status'];
@@ -7,7 +8,22 @@ $productId=$_REQUEST['id'];
 $catagoryId=$_REQUEST['category'];
 $categoryPic=$_FILES['img'];
 
-
+$errors = [];
+foreach ($_REQUEST as $key => $value) {
+    if (empty($value)) {
+        $errors[$key] = "$key is required";
+         header("location:../all_product.html");
+    }
+}
+if (!empty($errors)) {
+    setcookie("errors", json_encode($errors),0,'/');
+    // header("location:../all_product.html");
+    exit();
+} else {
+    
+setcookie('errors','', -1, '/');
+   
+}
 
 
 $imgSize = $categoryPic['size'];
@@ -35,21 +51,34 @@ move_uploaded_file($file_path, $categoryPic);
 
 $catagorypicuplode= time() . '.' . $imgExtension;
 
+$result=$db->getOneProduct('product',$productName);
+if($result){
+    
+    setcookie("errors", json_encode(['errors'=>'data exist']),0,'/');
+    header('Location:../all_product.html');
+
+}else{
+    $db->udateproductData($productId,$productName,$productprice,$catagorypicuplode,$productStatus,$catagoryId);
+    header('Location:../all_product.html');
+    setcookie('errors','', -1, '/');
+}
+
+
 //categoryPic
 
-$db=new DB($con);
+
 // $productID = $db->getproductId($productName);
 
 // $productID =$productID['id'];
-if($productId ){
-    $result=$db->udateproductData($productId,$productName,$productprice,$catagorypicuplode,$productStatus,$catagoryId);
-    header('Location:../all_product.html');
-    }
-else{
+// if($productId ){
+//     $result=$db->udateproductData($productId,$productName,$productprice,$catagorypicuplode,$productStatus,$catagoryId);
+//     header('Location:../all_product.html');
+//     }
+// else{
 
-    $results= $db->addProduct($productName,$productprice,$categoryPic,$catagoryId );
-    header("location:../all_product.html");
-}
+//     $results= $db->addProduct($productName,$productprice,$categoryPic,$catagoryId );
+//     header("location:../all_product.html");
+// }
 
 
 

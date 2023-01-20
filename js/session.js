@@ -7,9 +7,7 @@ function manpulateResponse(data) {
   if (data.login == "notValid") {
     window.open("./login page", "_self");
   } else {
-    data.forEach((obj) => {
-      addUserData(obj);
-    });
+    addUserData(data[0]);
   }
 }
 
@@ -20,7 +18,7 @@ function addUserData(obj) {
   userPic.src = `${obj.product_pic}`;
 }
 
-let logOutBtn = document.getAnimations("log_out_btn");
+let logOutBtn = document.getElementById("log_out_btn");
 logOutBtn.addEventListener("click", () => {
   userLogOut();
 });
@@ -32,7 +30,7 @@ async function userLogOut() {
 }
 
 function manpulateuserData(user) {
-  if (user.logout == valid) {
+  if (user.logout == "valid") {
     window.open("./login page", "_self");
   }
 }
