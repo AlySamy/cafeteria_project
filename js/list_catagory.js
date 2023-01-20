@@ -14,12 +14,7 @@ function manpulateResponse(data) {
 let select = document.getElementById("category");
 function createNewOption(obj) {
   let opteion = document.createElement("option");
-  //   let idSpan = document.createElement("span");
-  //   idSpan.className = "d-none";
   opteion.innerHTML = obj.name;
   opteion.setAttribute("value", obj.id);
-  //   console.log(obj.name);
-  //   opteion.innerHTML = obj.id;
-  //   opteion.appendChild(idSpan);
   select.appendChild(opteion);
 }

@@ -26,6 +26,10 @@ class DB
         $data = $sql->fetch(PDO::FETCH_ASSOC);
         return $data;
     }
+   
+
+   
+
     // edit user
     public function update($tableName,$id,$data)
     {
@@ -70,6 +74,16 @@ class DB
         return $data;
         
     }
+
+    public function allProducts($index){
+        $query = "SELECT * FROM product limit $index,3";
+        $sql=$this->con->prepare($query);
+        $sql->execute();
+        $data = $sql->fetchAll(PDO::FETCH_ASSOC);
+        return $data;
+        
+    }
+
     public function getOneProduct($tableName,$productName)
     {
         $query = "SELECT * FROM $tableName where name = '$productName'";
@@ -149,10 +163,12 @@ class DB
         $sql->execute(); 
         return true;       
 
+    
     }
-
    
 }
+
+
 
 
 

@@ -1,15 +1,32 @@
+let allData = [];
+
 async function getAllProducts() {
   let result = await fetch("./php/list_product.php");
   let data = await result.json();
-  manpulateResponse(data);
+  numberOfPages(data);
 }
 getAllProducts();
 
-function manpulateResponse(data) {
+async function manpulateResponse(index) {
+  let res = await fetch("./php/product_pagination.php", {
+    method: "post",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      index: index,
+    }),
+  });
+  let data = await res.json();
+  let fatherOfElementsToDelete = document.getElementById("all_product");
+  while (fatherOfElementsToDelete.firstChild) {
+    fatherOfElementsToDelete.firstChild.remove();
+  }
   data.forEach((obj) => {
     createRow(obj);
   });
 }
+manpulateResponse(1);
 
 let tableBody = document.querySelector("tbody");
 function createRow(obj) {
@@ -43,13 +60,10 @@ function createRow(obj) {
     document.getElementsByName("name")[0].value = obj.name;
     document.getElementsByName("price")[0].value = obj.price;
     document.getElementsByName("status")[0].value = obj.status;
-    document.getElementsByName(
-      "img"
-    )[0].src = `./images/products/${obj.product_pic}`;
+    // document.getElementsByName("img")[0].src = `./images/products/${obj.product_pic}`;
     // console.log((src = `./images/products/${obj.product_pic}`));
 
     document.getElementsByName("id")[0].value = obj.id;
-    // console.log(obj.product_pic);
     getAllCategory();
   });
 
@@ -74,21 +88,6 @@ function createDeleteElement() {
   return deleteImg;
 }
 
-// async function deletProduct(productName) {
-//   console.log("test");
-//   let formdata = new FormData();
-//   formdata.append("productToDelete", productName);
-//   let result = fetch(
-//     "http://localhost:8080/cafeteria_project/php/delete_product.php",
-//     {
-//       method: "post",
-//       body: formdata,
-//     }
-//   );
-//   let data = await result.json();
-//   console.log(data);
-// }
-
 async function deletProduct(productId) {
   let product = {
     productToDelete: `${productId}`,
@@ -110,27 +109,6 @@ function cheackIFdeletedElement(obj) {
   }
 }
 
-// async function postDataFprEdit(name, price, category, pic) {
-//   let Data = {
-//     productName: `${name}`,
-//     productPrice: `${price}`,
-//     categoryID: `${category}`,
-//     categorypic: `${pic}`,
-//   };
-//   let result = await fetch(
-//     "http://localhost:8080/cafeteria_project/php/updateProductData.php",
-
-//     {
-//       method: "post",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify(Data),
-//     }
-//   );
-//   let data = await result.json();
-// }]
-// add catagory for edit
 let select = document.getElementById("category");
 async function getAllCategory() {
   let result = await fetch("./php/getAllCategory.php");
@@ -143,36 +121,19 @@ async function getAllCategory() {
     opteion.setAttribute("value", data[key].id);
     select.appendChild(opteion);
   }
-  // manpulateResponse(data);
 }
-// getAllCategory();
-
-// function manpulateResponse(data) {
-//   data.forEach((obj) => {
-//     // createNewOption(obj);
-//     console.log(obj);
-//   });
-// }
-
-// let select = document.getElementById("category");
-// function createNewOption(obj) {
-// let opteion = document.createElement("option");
-//   let idSpan = document.createElement("span");
-//   idSpan.className = "d-none";
-// obj.forEach((ob) => {
-// console.log(ob);
-// opteion.innerHTML = object.name;
-// opteion.setAttribute("value", object.id);
-// select.appendChild(opteion);
-// });
-
-// console.log(obj[0].name);
-//   console.log(obj.name);
-//   opteion.innerHTML = obj.id;
-//   opteion.appendChild(idSpan);
-// }
 
 let addBtn = document.getElementById("add_btn");
 addBtn.addEventListener("click", () => {
   window.open("./add_product.html", "_self");
 });
+
+// number of pages pagination
+function numberOfPages(data) {
+  let x = data.length / 3;
+  let NumberOfPages = Math.ceil(x);
+  for (let i = 1; i < NumberOfPages + 1; i++) {
+    let row = `<li class="page-item my-3"><a onclick=manpulateResponse(${i}) class="page-link bg-black " style="color:#CA8E46;">${i}</a></li>`;
+    document.getElementById("pagination").innerHTML += row;
+  }
+}
