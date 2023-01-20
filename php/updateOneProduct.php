@@ -33,7 +33,7 @@ $file_path = $categoryPic['tmp_name'];
 $categoryPic = '../images/products/' . time() . '.' . explode('/', mime_content_type($file_path))[1];
 move_uploaded_file($file_path, $categoryPic);
 
-$catagorypicuplode= time() . '.' . explode('/', mime_content_type($file_path))[1];
+$catagorypicuplode= time() . '.' . $imgExtension;
 
 //categoryPic
 

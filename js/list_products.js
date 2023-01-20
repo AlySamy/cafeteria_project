@@ -41,7 +41,9 @@ function createRow(obj) {
     document.getElementsByName("name")[0].value = obj.name;
     document.getElementsByName("price")[0].value = obj.price;
     document.getElementsByName("status")[0].value = obj.status;
-    // document.getElementsByName("img")[0].src = `./images/products/${obj.product_pic}`;
+    document.getElementsByName(
+      "img"
+    )[0].src = `./images/products/${obj.product_pic}`;
     // console.log((src = `./images/products/${obj.product_pic}`));
 
     document.getElementsByName("id")[0].value = obj.id;
@@ -167,3 +169,8 @@ async function getAllCategory() {
 //   opteion.innerHTML = obj.id;
 //   opteion.appendChild(idSpan);
 // }
+
+let addBtn = document.getElementById("add_btn");
+addBtn.addEventListener("click", () => {
+  window.open("./add_product.html", "_self");
+});
