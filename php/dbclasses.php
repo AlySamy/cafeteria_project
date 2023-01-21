@@ -226,7 +226,6 @@ class DB
         $sql = $this->con->prepare($query);
         $sql->execute();
         $data = $sql->fetch(PDO::FETCH_ASSOC);
-        
         return $data;
     }
     //get user admin or user 

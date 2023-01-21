@@ -65,7 +65,7 @@ if($result){
 }else{
     
     $db->udateproductData($productId,$productName,$productprice,$catagorypicuplode,$productStatus,$catagoryId);
-    // header('Location:../all_product.html');
+    header('Location:../all_product.html');
     setcookie('errors','', -1, '/');
 }
 
