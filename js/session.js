@@ -5,7 +5,7 @@ async function getUserData() {
 }
 function manpulateResponse(data) {
   if (data.login == "notValid") {
-    window.open("./login page", "_self");
+    window.open("./login.html", "_self");
   } else {
     addUserData(data[0]);
   }
@@ -31,6 +31,6 @@ async function userLogOut() {
 
 function manpulateuserData(user) {
   if (user.logout == "valid") {
-    window.open("./login page", "_self");
+    window.open("./login.html", "_self");
   }
 }

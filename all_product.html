@@ -19,8 +19,9 @@
   ></script>
 
   <script src="https://kit.fontawesome.com/84e17ee5b7.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="css/navbar.css">
   <link rel="stylesheet" href="./css/all_products.css">
+  
 </head>
 
 <body>
@@ -39,28 +40,44 @@
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
-          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+        <div class="collapse navbar-collapse text-center " id="navbarSupportedContent">
+          <ul class="navbar-nav mb-2 mx-auto mb-lg-0 ">
             <li class="nav-item">
               <a class="nav-link " aria-current="page" href="#home">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#about">About</a>
+              <a class="nav-link" href="#about">Products</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#contact">Contact us</a>
+              <a class="nav-link" href="#contact">Users</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#gallery">Gallery</a>
+              <a class="nav-link" href="#gallery">Orders</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#gallery">checks</a>
             </li>
           </ul>
-          <form class="d-flex">
-            <button class="btn " type="submit">Login</button>
-          </form>
+          <div class="d-flex align-items-center">
+            <div>
+              <img src="./images/pic/images/admin.png" class="rounded-5" alt="" srcset="" width="40px" height="40px">
+            </div>
+            <span class="text-white mx-3 name">Alaa Nassar</span>
+            <!-- <button class="btn " type="submit">Log Out</button> -->
+            <div class="dropdown">
+              <button class="icon dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              </button>
+              <div class="dropdown-menu text-center" aria-labelledby="dropdownMenuButton1">
+                <button class="btn "><a class="dropdown-item" href="#">Log out</a></li>
+                
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </nav>
-    <!-- End Navbar -->
+    <!-- End Navbar -->  
+    
     <div class="container py-5 d-flex flex-wrap justify-content-between col-12">
       <div class="col-3">
         <h1 class="text-white">All Products</h1>
@@ -173,15 +190,15 @@
     <footer class="py-4 bg-black text-white">
       <div class="container d-flex justify-content-between align-items-center">
         <div class="d-flex footer-text">
-          <p>@Copyright 2022 - Stradate by Cafe Team</p>
+          <p>@Copyright 2022 - Stradate by El-Fankosh Team</p>
         </div>
 
-        <div class="footer-i">
+        <div class="footer-i d-flex">
 
-          <i class="fab fa-facebook-f"></i>
-          <i class="fab fa-twitter"></i>
-          <i class="fab fa-instagram"></i>
-          <i class="fab fa-linkedin-in"></i>
+          <div class="social"><i class="fab fa-facebook-f"></i></div>
+          <div class="social"><i class="fab fa-twitter"></i></div>
+          <div class="social"><i class="fab fa-instagram"></i></div>
+          <div class="social"><i class="fab fa-linkedin-in"></i></div>
         </div>
       </div>
     </footer>
