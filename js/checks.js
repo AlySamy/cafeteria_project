@@ -130,7 +130,6 @@ async function getSingleUserData(user_id) {
         body: JSON.stringify({
             "user_id": user_id
         })
-
     });
     let data = await res.json();
 
