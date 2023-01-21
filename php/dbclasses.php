@@ -47,6 +47,10 @@ class DB
 
         return $data;
     }
+   
+
+   
+
     // edit user
     public function update($tableName, $id, $data)
     {
@@ -91,6 +95,16 @@ class DB
         return $data;
         
     }
+
+    public function allProducts($index){
+        $query = "SELECT * FROM product limit $index,3";
+        $sql=$this->con->prepare($query);
+        $sql->execute();
+        $data = $sql->fetchAll(PDO::FETCH_ASSOC);
+        return $data;
+        
+    }
+
     public function getOneProduct($tableName,$productName)
     {
         $query = "SELECT * FROM $tableName where name = '$productName'";
@@ -142,12 +156,14 @@ class DB
         return $data;       
     }
 
-// catagory validate
+ // catagory validate
 
     public function getOneCatagory($catagoryName)
     {
         $query = "SELECT * FROM category where name = '$catagoryName'";
-=======
+
+    }
+
     // get user id
     public function getUserId($tableName, $email)
     {
@@ -181,7 +197,7 @@ class DB
 
     public function validatecatagoryName($catagoryName){
 
-        $result=$this->getOneProduct($catagoryName);
+        $result=$this->getOneCatagory($catagoryName);
         if (gettype($result)=='array'){
             return false;
         }
@@ -196,10 +212,12 @@ class DB
         $sql->execute(); 
         return true;       
 
+    
     }
-
    
-}
+
+
+
 
 
 
@@ -279,7 +297,8 @@ class DB
 }
 
 
-$db = new DB($con);
+
+// $db = new DB($con);
 //$id=$db->index('users');
 
 // $db->show('users',1);

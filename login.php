@@ -1,14 +1,12 @@
 <?php
 require("./php/dbclasses.php");
+$db = new DB($con);
+
 session_start();
-print_r($_REQUEST);
-echo '<br>';
-echo '<br>';
+
 $email = $_REQUEST['email'];
 $password = $_REQUEST['password'];
-print_r($password);
-echo '<br>';
-echo '<br>';
+
 //**************************validation for  access email***************************/
 $id = $db->getUserId('users', $email);
 $id = $id['id'];
