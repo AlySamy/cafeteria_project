@@ -1,21 +1,22 @@
 async function getUserData() {
-  let result = await fetch("./php/chec_session.php");
+  let result = await fetch("./php/check_session.php");
   let data = await result.json();
   manpulateResponse(data);
 }
+getUserData();
 function manpulateResponse(data) {
   if (data.login == "notValid") {
-    window.open("./login page", "_self");
+    window.open("./index.html", "_self");
   } else {
-    addUserData(data[0]);
+    addUserData(data);
   }
 }
 
 function addUserData(obj) {
-  let userName = document.getElementById("name");
+  let userName = document.getElementById("user_name");
   userName.innerHTML = obj.name;
-  let userPic = document.getElementById("img");
-  userPic.src = `${obj.product_pic}`;
+  let userPic = document.getElementById("user_img");
+  userPic.src = `./images/users/${obj.profile_pic}`;
 }
 
 let logOutBtn = document.getElementById("log_out_btn");
@@ -31,6 +32,6 @@ async function userLogOut() {
 
 function manpulateuserData(user) {
   if (user.logout == "valid") {
-    window.open("./login page", "_self");
+    window.open("./index.html", "_self");
   }
 }

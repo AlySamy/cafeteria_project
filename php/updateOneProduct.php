@@ -8,6 +8,9 @@ $productId=$_REQUEST['id'];
 $catagoryId=$_REQUEST['category'];
 $categoryPic=$_FILES['img'];
 
+
+
+
 $errors = [];
 foreach ($_REQUEST as $key => $value) {
     if (empty($value)) {
@@ -51,15 +54,18 @@ move_uploaded_file($file_path, $categoryPic);
 
 $catagorypicuplode= time() . '.' . $imgExtension;
 
+
 $result=$db->getOneProduct('product',$productName);
+
 if($result){
-    
+    $db->updateProuductEpxeptName($productId,$productprice,$catagorypicuplode,$productStatus,$catagoryId);
     setcookie("errors", json_encode(['errors'=>'data exist']),0,'/');
     header('Location:../all_product.html');
 
 }else{
+    
     $db->udateproductData($productId,$productName,$productprice,$catagorypicuplode,$productStatus,$catagoryId);
-    header('Location:../all_product.html');
+    // header('Location:../all_product.html');
     setcookie('errors','', -1, '/');
 }
 

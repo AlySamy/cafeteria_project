@@ -1,6 +1,5 @@
 let cookies = document.cookie.split("=");
 let errors = Cookies.get("errors");
-console.log(errors);
 if (errors) {
   errors = JSON.parse(errors);
   insertErrorMessages(errors);
