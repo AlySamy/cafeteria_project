@@ -40,5 +40,5 @@ if ($is_admin) {
     header("location:admin.html");
 } else {
     $_SESSION['user_id'] = $id;
-    header("location:index.html");
+    header("location:userHome.html");
 }

@@ -12,6 +12,15 @@ class DB
     // get all users
     public function index($tableName)
     {
+        try{
+            $query = "SELECT * FROM $tableName";
+            $sql = $this->con->prepare($query);
+            $sql->execute();
+            $data = $sql->fetchAll(PDO::FETCH_ASSOC);
+            return $data;
+        }catch (PDOException $e) {
+            echo "Error: ".$e->getMessage();
+        }
         $query = "SELECT * FROM $tableName";
         $sql = $this->con->prepare($query);
         $sql->execute();
@@ -22,6 +31,15 @@ class DB
     // get single user by id
     public function show($tableName, $id)
     {
+        try{
+            $query = "SELECT * FROM $tableName where id = $id";
+            $sql = $this->con->prepare($query);
+            $sql->execute();
+            $data = $sql->fetch(PDO::FETCH_ASSOC);
+            return $data;
+        }catch (PDOException $e) {
+            echo "Error: ".$e->getMessage();
+        }
         $query = "SELECT * FROM $tableName where id = $id";
         $sql = $this->con->prepare($query);
         $sql->execute();
@@ -211,6 +229,53 @@ class DB
         $data = $sql->fetch(PDO::FETCH_ASSOC);
         return $data;
     }
+
+
+    // get products for home page
+    public function getProducts($tableName)
+    {
+        try{
+            $query = "SELECT product.name,price,product_pic FROM `product` , `category` WHERE product.category_id=category.id ORDER BY category_id;";
+            $sql = $this->con->prepare($query);
+            $sql->execute();
+            $data = $sql->fetchAll(PDO::FETCH_ASSOC);
+            return $data;
+        }catch (PDOException $e) {
+            echo "Error: ".$e->getMessage();
+        }
+    }
+
+    //search in home page
+    public function paginationSearch($tableName,$word)
+    {
+        try{
+            $query = "SELECT name,price,product_pic FROM `product` where name like '%$word%';";
+            $sql = $this->con->prepare($query);
+            $sql->execute();
+            $data = $sql->fetchAll(PDO::FETCH_ASSOC);
+            return $data;
+        }catch (PDOException $e) {
+            echo "Error: ".$e->getMessage();
+        }
+    }
+
+    //get latest order
+     public function getLatestOrder($id)
+     {
+        try{
+            $query = "SELECT * FROM product where id=any(
+                SELECT product_id FROM order_product where order_id=(
+                SELECT id FROM total_order where user_id=$id ORDER BY created_at DESC LIMIT 1));;";
+            $sql = $this->con->prepare($query);
+            $sql->execute();
+            $data = $sql->fetchAll(PDO::FETCH_ASSOC);
+            return $data;
+        }catch (PDOException $e) {
+            echo "Error: ".$e->getMessage();
+        }
+     }
+
+    
 }
 
 

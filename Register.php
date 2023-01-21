@@ -25,7 +25,7 @@
     $email = $_REQUEST['email'];
     $id = $db->getUserId('users', $email)['id'];
     if (!isset($errors['email'])) {
-        if (!preg_match('/^[a-zA-Z]+@[a-zA-Z0-9]+\.[a-zA-z]{0,3}/', $email) || !empty($id)) {
+        if (!preg_match('/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-z]{0,3}/', $email) || !empty($id)) {
             $arr = ['email' => 'Email in Not Valid '];
             set_cookie($arr);
         } else {
