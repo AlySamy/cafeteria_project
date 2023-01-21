@@ -1,7 +1,6 @@
 async function getUserData() {
   let result = await fetch("./php/check_session.php");
   let data = await result.json();
-  console.log(data);
   manpulateResponse(data);
 }
 getUserData();
@@ -20,19 +19,19 @@ function addUserData(obj) {
   userPic.src = `./images/users/${obj.profile_pic}`;
 }
 
-// let logOutBtn = document.getElementById("log_out_btn");
-// logOutBtn.addEventListener("click", () => {
-//   userLogOut();
-// });
+let logOutBtn = document.getElementById("log_out_btn");
+logOutBtn.addEventListener("click", () => {
+  userLogOut();
+});
 
-// async function userLogOut() {
-//   let result = await fetch("./php/log_out.php");
-//   let data = await result.json();
-//   manpulateuserData(data);
-// }
+async function userLogOut() {
+  let result = await fetch("./php/log_out.php");
+  let data = await result.json();
+  manpulateuserData(data);
+}
 
-// function manpulateuserData(user) {
-//   if (user.logout == "valid") {
-//     window.open("./login.html", "_self");
-//   }
-// }
+function manpulateuserData(user) {
+  if (user.logout == "valid") {
+    window.open("./login.html", "_self");
+  }
+}

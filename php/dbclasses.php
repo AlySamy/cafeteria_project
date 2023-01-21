@@ -106,6 +106,7 @@ class DB
     }
 
     public function getOneProduct($tableName,$productName)
+
     {
         $query = "SELECT * FROM $tableName where name = '$productName'";
         $sql = $this->con->prepare($query);
@@ -134,12 +135,26 @@ class DB
         //to do
     public function udateproductData($id,$name,$price,$pic,$status,$categoryId){
 
+    
         $query="UPDATE product SET name='$name',price=$price,product_pic='$pic',status='$status',category_id=$categoryId
          WHERE id=$id";
         $sql=$this->con->prepare($query);
-        $sql->execute();
+        $r=$sql->execute();
+
+    
         
     }
+    public function updateProuductEpxeptName($id,$price,$pic,$status,$categoryId){
+
+        $query="UPDATE product SET price=$price,product_pic='$pic',status='$status',category_id=$categoryId
+        WHERE id=$id";
+       $sql=$this->con->prepare($query);
+       $r=$sql->execute();
+       
+   
+    }
+   
+    
 
     public function addProduct($name,$price,$pic,$cat_id){
         $query="INSERT INTO product (name ,price,product_pic,category_id) VALUES('$name',$price,'$pic',$cat_id)"; 
@@ -221,14 +236,14 @@ class DB
 
 
 
-//
-// $db = new DB($con);
-// $oldName=$db->getOneProduct('product','t');
-// var_dump($oldName);
-// $db->addProduct('tea',33,'',3);
-// $db->udateproductDAta('t',2,'',2);
-//$db->lisProducts('product');
-// $db->index('users');
+
+
+ // $oldName=$db->getOneProduct('product','t');
+ // var_dump($oldName);
+ // $db->addProduct('tea',33,'',3);
+ // $db->udateproductDAta('t',2,'',2);
+ //$db->lisProducts('product');
+ // $db->index('users');
 
     //get users from total_orders
     public function users_name($tableName1,$tableName2){
@@ -296,7 +311,8 @@ class DB
     
 }
 
-
+// $db = new DB($con);
+// $db->udateproductData(7,'test',30,'1674292356.jpeg','Not available',1);
 
 // $db = new DB($con);
 //$id=$db->index('users');
