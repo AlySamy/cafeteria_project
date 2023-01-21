@@ -65,8 +65,17 @@ class DB
         }catch (PDOException $e) {
             echo "Error: ".$e->getMessage();
         }
-
+        $query = "SELECT * FROM $tableName where id = $id";
+        $sql = $this->con->prepare($query);
+        $sql->execute();
+        $data = $sql->fetch(PDO::FETCH_ASSOC);
+        
+        return $data;
     }
+   
+
+   
+
     public function update($tableName, $id, $data)
     {
         $columns = '';
@@ -116,6 +125,100 @@ class DB
         $sql = $this->con->prepare($query);
         $sql->execute();
     }
+
+    //get all products
+    public function lisProducts($tableName){
+        $query = "SELECT * FROM $tableName ";
+        $sql=$this->con->prepare($query);
+        $sql->execute();
+        $data = $sql->fetchAll(PDO::FETCH_ASSOC);
+        return $data;
+        
+    }
+
+    public function allProducts($index){
+        $query = "SELECT * FROM product limit $index,3";
+        $sql=$this->con->prepare($query);
+        $sql->execute();
+        $data = $sql->fetchAll(PDO::FETCH_ASSOC);
+        return $data;
+        
+    }
+
+    public function getOneProduct($tableName,$productName)
+
+    {
+        $query = "SELECT * FROM $tableName where name = '$productName'";
+        $sql = $this->con->prepare($query);
+        $sql->execute();
+        $data = $sql->fetch(PDO::FETCH_ASSOC);
+        return $data;
+    }
+
+    public function validatproductName($productName){
+
+        $result=$this->getOneProduct('product',$productName);
+        if (gettype($result)=='array'){
+            return false;
+        }
+        
+        return true;
+    }
+
+    public function deleteProduct($id){
+         
+         $query="UPDATE product set status ='Not available' where id ='$id'" ;
+            $sql = $this->con->prepare($query);
+            $result=$sql->execute();
+            return $result;
+    }
+        //to do
+    public function udateproductData($id,$name,$price,$pic,$status,$categoryId){
+
+    
+        $query="UPDATE product SET name='$name',price=$price,product_pic='$pic',status='$status',category_id=$categoryId
+         WHERE id=$id";
+        $sql=$this->con->prepare($query);
+        $r=$sql->execute();
+
+    
+        
+    }
+    public function updateProuductEpxeptName($id,$price,$pic,$status,$categoryId){
+
+        $query="UPDATE product SET price=$price,product_pic='$pic',status='$status',category_id=$categoryId
+        WHERE id=$id";
+       $sql=$this->con->prepare($query);
+       $r=$sql->execute();
+       
+   
+    }
+   
+    
+
+    public function addProduct($name,$price,$pic,$cat_id){
+        $query="INSERT INTO product (name ,price,product_pic,category_id) VALUES('$name',$price,'$pic',$cat_id)"; 
+        $sql=$this->con->prepare($query);
+        $sql->execute();
+        
+    }    
+
+    public function getproductId($productName){
+        $query = "SELECT id FROM product where name = '$productName'";
+        $sql = $this->con->prepare($query);
+        $sql->execute();
+        $data = $sql->fetch(PDO::FETCH_ASSOC);
+        return $data;       
+    }
+
+ // catagory validate
+
+    public function getOneCatagory($catagoryName)
+    {
+        $query = "SELECT * FROM category where name = '$catagoryName'";
+
+    }
+
     // get user id
     public function getUserId($tableName, $email)
     {
@@ -142,11 +245,41 @@ class DB
     public function getUserpw($tableName, $email)
     {
         $query = "SELECT password from $tableName where email='$email'";
+
         $sql = $this->con->prepare($query);
         $sql->execute();
         $data = $sql->fetch(PDO::FETCH_ASSOC);
         return $data;
     }
+
+    public function validatecatagoryName($catagoryName){
+
+        $result=$this->getOneCatagory($catagoryName);
+        if (gettype($result)=='array'){
+            return false;
+        }
+        
+        return true;
+    }
+
+
+    public function addCategory($catagoryName){
+        $query="INSERT INTO category(name)VALUES('$catagoryName')";
+        $sql=$this->con->prepare($query);
+        $sql->execute(); 
+        return true;       
+
+    
+    }
+
+
+ // $oldName=$db->getOneProduct('product','t');
+ // var_dump($oldName);
+ // $db->addProduct('tea',33,'',3);
+ // $db->udateproductDAta('t',2,'',2);
+ //$db->lisProducts('product');
+ // $db->index('users');
+
     //get users from total_orders
     public function users_name($tableName1,$tableName2){
         $query="SELECT name FROM $tableName1,$tableName2 WHERE $tableName1.id=$tableName2.user_id";
@@ -236,36 +369,15 @@ class DB
         }
      }
 
+
     
     
-    
-     public function submitOrder($orderArr, $user_id, $room_number, $notes, $orderArrlength)
-    {
-
-        try {
-            $q = json_encode($orderArr);
-            
-            $query = "call test('$q',$user_id,$room_number,'$notes',$orderArrlength)";
-            $sql = $this->con->query($query);
-            $result = $sql->fetch(PDO::FETCH_ASSOC);
-            
-
-        } catch (PDOException $e) {
-            echo "Error: " . $e->getMessage();
-        }
-    }
-
-
-
     
 }
 
-// $db = new DB($con);
-//$id=// $x=$db->validateUser(6,"alaa1234@gmail.com",200);
-// var_dump($x);
-// $db->validateUser(6,"alaa@gmail.com",200);
-// $db->usersroom("users","user_room",8);
-// $db->index('users');
+
+$db = new DB($con);
+//$id=$db->index('users');
 // $db->show('users',1);
 // $db->store('users' , ['name'=>'ahmed','email'=>'ahmed@gmail.com', 'password'=>'12345678', 'profile_pic'=>'./images/0.12204800 1672674506.jpeg']);
 // $db->store('users' , ['name'=>'ali','email'=>'ali@gmail.com', 'password'=>'12345678', 'profile_pic'=>'./images/0.12204800 1672674506.jpeg']);
@@ -273,7 +385,6 @@ class DB
 // $db->store('users' , ['name'=>'toka','email'=>'toka@gmail.com', 'password'=>'12345678', 'profile_pic'=>'./images/0.12204800 1672674506.jpeg']);
 // $db->update('users',1,['name'=>'kareem','email' => 'karem234@gmail.com']);
 // $db->delete('users',3);
-
 // $db->store('product' , ['name'=>'tea','category_id'=>'1', 'price'=>'5', 'product_pic'=>'./images/0.12204800 1672674506.jpeg','status'=>'Available']);
 //$id = $db->getUserId('users', 'ali@gmail.com');
 //print_r($id);

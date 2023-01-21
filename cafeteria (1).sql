@@ -3,7 +3,15 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
+<<<<<<< HEAD:cafeteria.sql
+<<<<<<< HEAD
+-- Generation Time: Jan 18, 2023 at 09:50 AM
+=======
+-- Generation Time: Jan 13, 2023 at 03:37 PM
+>>>>>>> fff474d823362f2b65bcda885636c64160283823
+=======
 -- Generation Time: Jan 18, 2023 at 03:21 PM
+>>>>>>> 5a910bfb65e26cceb82f3f988542252badc1a045:cafeteria (1).sql
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -60,12 +68,27 @@ CREATE TABLE `order_product` (
 -- Dumping data for table `order_product`
 --
 
+<<<<<<< HEAD:cafeteria.sql
+<<<<<<< HEAD
+=======
+>>>>>>> 5a910bfb65e26cceb82f3f988542252badc1a045:cafeteria (1).sql
 INSERT INTO `order_product` (`order_id`, `product_id`, `quantity`, `total_price`, `created_at`) VALUES
 (1, 1, 1, 10, '2023-01-17 15:51:12'),
 (2, 2, 1, 5, '2023-01-17 15:51:12'),
 (2, 3, 1, 5, '2023-01-17 15:51:12'),
 (3, 4, 2, 10, '2023-01-17 15:51:12'),
 (4, 5, 1, 10, '2023-01-17 15:51:12');
+<<<<<<< HEAD:cafeteria.sql
+=======
+INSERT INTO `order_product` (`order_id`, `product_name`, `quantity`, `total_price`, `created_at`) VALUES
+(1, 'tea', 2, 10, '2023-01-10 21:14:47'),
+(2, 'tea', 2, 10, '2023-01-11 18:04:18'),
+(3, 'tea', 2, 10, '2023-01-11 18:05:14'),
+(4, 'coffee', 1, 5, '2023-01-13 14:15:41'),
+(4, 'tea', 1, 5, '2023-01-13 14:15:41');
+>>>>>>> fff474d823362f2b65bcda885636c64160283823
+=======
+>>>>>>> 5a910bfb65e26cceb82f3f988542252badc1a045:cafeteria (1).sql
 
 -- --------------------------------------------------------
 
@@ -87,6 +110,10 @@ CREATE TABLE `product` (
 -- Dumping data for table `product`
 --
 
+<<<<<<< HEAD:cafeteria.sql
+<<<<<<< HEAD
+=======
+>>>>>>> 5a910bfb65e26cceb82f3f988542252badc1a045:cafeteria (1).sql
 INSERT INTO `product` (`id`, `name`, `category_id`, `price`, `product_pic`, `status`, `created_at`) VALUES
 (1, 'choclata', 2, 123, '1.jpg', 'Not available', '2023-01-11 20:29:35'),
 (2, 'dd', 1, 40, '1.jpg', 'Not available', '2023-01-15 16:43:12'),
@@ -97,6 +124,14 @@ INSERT INTO `product` (`id`, `name`, `category_id`, `price`, `product_pic`, `sta
 (7, 'test', 2, 1000, '../images/products/1673802247.jpeg', 'Not available', '2023-01-15 17:04:07'),
 (8, 's', 1, 22, '../images/products/1673896913.jpeg', 'Not available', '2023-01-16 19:21:53'),
 (9, 'x', 1, 12, '1673897013.jpeg', 'Available', '2023-01-16 19:23:33');
+<<<<<<< HEAD:cafeteria.sql
+=======
+INSERT INTO `product` (`name`, `category_id`, `price`, `product_pic`, `status`, `created_at`) VALUES
+('coffee', 1, 5, '0.12204800 1672674506.jpeg', 'Available', '2023-01-13 14:08:52'),
+('tea', 1, 5, '0.12204800 1672674506.jpeg', 'Available', '2023-01-10 21:10:27');
+>>>>>>> fff474d823362f2b65bcda885636c64160283823
+=======
+>>>>>>> 5a910bfb65e26cceb82f3f988542252badc1a045:cafeteria (1).sql
 
 -- --------------------------------------------------------
 
@@ -120,8 +155,18 @@ CREATE TABLE `total_order` (
 INSERT INTO `total_order` (`id`, `user_id`, `status`, `total_price`, `created_at`, `notes`) VALUES
 (1, 4, 'Done', 10, '2023-01-10 21:14:14', 'two spoons of sugar'),
 (2, 4, 'Done', 10, '2023-01-11 18:03:46', NULL),
+<<<<<<< HEAD:cafeteria.sql
+<<<<<<< HEAD
 (3, 5, 'Done', 10, '2023-01-11 18:04:54', 'sugar'),
 (4, 6, 'Done', 10, '2023-01-13 14:06:52', 'one');
+=======
+(3, 5, 'Done', 10, '2023-01-11 18:04:54', 'no sugar'),
+(4, 6, 'Done', 10, '2023-01-13 14:06:52', NULL);
+>>>>>>> fff474d823362f2b65bcda885636c64160283823
+=======
+(3, 5, 'Done', 10, '2023-01-11 18:04:54', 'sugar'),
+(4, 6, 'Done', 10, '2023-01-13 14:06:52', 'one');
+>>>>>>> 5a910bfb65e26cceb82f3f988542252badc1a045:cafeteria (1).sql
 
 -- --------------------------------------------------------
 
@@ -195,7 +240,15 @@ ALTER TABLE `order_product`
 -- Indexes for table `product`
 --
 ALTER TABLE `product`
+<<<<<<< HEAD:cafeteria.sql
+<<<<<<< HEAD
   ADD PRIMARY KEY (`id`),
+=======
+  ADD PRIMARY KEY (`name`),
+>>>>>>> fff474d823362f2b65bcda885636c64160283823
+=======
+  ADD PRIMARY KEY (`id`),
+>>>>>>> 5a910bfb65e26cceb82f3f988542252badc1a045:cafeteria (1).sql
   ADD KEY `category_id` (`category_id`);
 
 --
@@ -263,6 +316,15 @@ ALTER TABLE `user_room`
 ALTER TABLE `order_product`
   ADD CONSTRAINT `order_product_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `total_order` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `order_product_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+<<<<<<< HEAD:cafeteria.sql
+
+--
+-- Constraints for table `product`
+--
+ALTER TABLE `product`
+  ADD CONSTRAINT `product_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`);
+=======
+>>>>>>> 5a910bfb65e26cceb82f3f988542252badc1a045:cafeteria (1).sql
 
 --
 -- Constraints for table `product`

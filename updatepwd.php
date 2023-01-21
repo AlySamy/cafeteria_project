@@ -1,7 +1,7 @@
 <?php
 require('./php/dbclasses.php');
 session_start();
-print_r($_REQUEST);
+$db = new DB($con);
 // // ****************************validation for valid password **********************************************
 $password = $_REQUEST['password'];
 if (!preg_match('/^[0-9]{4,8}$/', $password)) {

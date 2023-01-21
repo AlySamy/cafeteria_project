@@ -1,7 +1,7 @@
 <?php
 require("./php/dbclasses.php");
 session_start();
-print_r($_REQUEST);
+$db = new DB($con);
 //**********************validation for email in forget password */
 $email = $_REQUEST['email'];
 $id = $db->getUserId('users', $email);

@@ -1,7 +1,6 @@
 let cookie = document.cookie;
 console.log(cookie);
 let error = Cookies.get("error");
-console.log(cookie);
 if (error) {
   error = JSON.parse(error);
   console.log(error);

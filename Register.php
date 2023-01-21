@@ -2,6 +2,7 @@
 
     //*******************************validation back end for from ********************************************************************************/
     require('./php/dbclasses.php');
+    $db = new DB($con);
     session_start();
     // // validation for request (form)
     // // ***********************validation on  all fields  must be required*********************************
@@ -69,7 +70,7 @@
     $img = $_FILES['image'];
     $allowed_image_extension = array('png', 'jpg', 'jpeg');
     $imgExtension = explode('/', $img['type'])[1];
-    print_r($imgExtension);
+    // print_r($imgExtension);
     if (!isset($arr["image"])) {
         if (!in_array($imgExtension, $allowed_image_extension)) {
             $arr = ['image' => 'Extension Image is Not Valid'];
@@ -111,12 +112,12 @@
     $tmp_path = $img['tmp_name'];
     $imgExtension = explode('/', $img['type'])[1];
     $img_name = time() . '.' . $imgExtension;
-    $img_path = "./Profile_images/" . $img_name;
+    $img_path = "./images/users/" . $img_name;
     move_uploaded_file($tmp_path, $img_path);
-    $res = $db->store('users', ['name' => "$user_name", 'email' => "$user_email", 'password' => "$user_password", 'profile_pic' => "$img_path"]);
-    echo $res;
+    $res = $db->store('users', ['name' => "$user_name", 'email' => "$user_email", 'password' => "$user_password", 'profile_pic' => "$img_name"]);
+    // echo $res;
     $user_id = $db->getUserId('users', "$user_email")['id'];
-    print_r($user_id);
+    // print_r($user_id);
     $res1 = $db->store('user_room', ['user_id' => "$user_id", 'room_number' => "$user_room"]);
     // //**************************send message for success full process */
     //massage for admin to confirm insert user

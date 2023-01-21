@@ -49,20 +49,17 @@ function page(x)
     }
 }
 
-async function search()
-{
-    let element=document.getElementsByName("word")[0];
-    let word=element.value;
-    
-    let res=await fetch("./php/search.php",
-    {
-        method:"POST",
-        header:{"Content-Type":"application/json",
-         },
-         body:JSON.stringify({words:word}),
-     });
-    let data=await res.json();
-    displaySearchedData(data);
+async function search() {
+  let element = document.getElementsByName("word")[0];
+  let word = element.value;
+
+  let res = await fetch("./php/search.php", {
+    method: "POST",
+    header: { "Content-Type": "application/json" },
+    body: JSON.stringify({ words: word }),
+  });
+  let data = await res.json();
+  displaySearchedData(data);
 }
 
 function displaySearchedData(data)
@@ -84,13 +81,12 @@ function displaySearchedData(data)
         createSearchProduct(data[k]);
     }
 
-    let input=document.getElementsByName("word")[0].value;
+  let input = document.getElementsByName("word")[0].value;
 
-    if(input == '')
-    {
-    let numberOfElementsToDelete=document.getElementsByClassName("search-product").length;
-    for(let i=0;i<numberOfElementsToDelete;i++)
-    {
+  if (input == "") {
+    let numberOfElementsToDelete =
+      document.getElementsByClassName("search-product").length;
+    for (let i = 0; i < numberOfElementsToDelete; i++) {
       document.getElementsByClassName("search-product")[0].remove();
     }
         document.getElementById("hide").style.display='block';
@@ -102,20 +98,17 @@ function displaySearchedData(data)
     }
 }
 
-async function getLatestOrder()
-{
-    fetch("./php/getLatestOrder.php").then(response => 
-        response.json()
-    ).then((data)=>{
-        lastOrder(data);
-    }) 
+async function getLatestOrder() {
+  fetch("./php/getLatestOrder.php")
+    .then((response) => response.json())
+    .then((data) => {
+      lastOrder(data);
+    });
 }
-function lastOrder(data)
-{
-    for(let k=0;k<data.length;k++)
-    {
-        createLatestProduct(data[k]);
-    }
+function lastOrder(data) {
+  for (let k = 0; k < data.length; k++) {
+    createLatestProduct(data[k]);
+  }
 }
 getLatestOrder();
 
