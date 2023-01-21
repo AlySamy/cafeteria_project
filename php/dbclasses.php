@@ -229,13 +229,6 @@ class DB
 
     
     }
-   
-
-
-
-
-
-
 
 
  // $oldName=$db->getOneProduct('product','t');
