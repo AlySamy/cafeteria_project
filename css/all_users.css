@@ -4,23 +4,14 @@
     box-sizing: border-box;
     font-family: "Montserrat";
 }
-/* nav{
-  
-      
-   
-} */
+
 .all_users{
     min-height: 100vh;
     font-size: 18px;
     text-transform: capitalize;
-    /* display: grid;
-    grid-template-rows:auto 1fr auto ; */
+    display: grid;
+    grid-template-rows:auto 1fr auto ;
 
-}
-.main{
-    height:auto;
-     /* display: grid;
-    grid-template-rows: 1fr auto 1fr ; */
 }
 
 .table {
@@ -33,15 +24,32 @@
     --bs-table-active-color: #CA8E46;
     --bs-table-active-bg: rgba(0, 0, 0, 0.1);
     --bs-table-hover-color: #CA8E46;
-    --bs-table-hover-bg: #edd19033;
+    --bs-table-hover-bg:    ;
     color: var(--bs-table-color);
 }
-.editBtn,.submit,.addUser{
+.editBtn,.submit{
+    background-color:#CA8E46 ;
+    color: white;
+    border: transparent;
+ 
+}
+.addUser{
+    background-color:#CA8E46 ;
+    color: white;
+    border: transparent;
+    padding: 7px 15px;
+}
+.editBtn,.submit:hover{
     background-color:#CA8E46 ;
     color: white;
     border: transparent;
 }
-.editBtn,.submit:hover{
+.btn.editBtn:hover{
+    background-color:#CA8E46 ;
+    color: white;
+    border: transparent;
+}
+.btn.addUser:hover{
     background-color:#CA8E46 ;
     color: white;
     border: transparent;
@@ -66,10 +74,6 @@ color: #CA8E46;
     color: white;
     background-color: #edd19033
 }
-/* footer{
-    display: grid;
-    grid-template-rows: 1fr auto 1fr ;
-  } */
 
 
   .btn-file {

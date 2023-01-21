@@ -99,22 +99,7 @@ function createRow(obj) {
   newRow.appendChild(action);
   tableBody.appendChild(newRow);
 }
-let cookies = document.cookie.split("=");
-let errors = cookies.get("errors");
-console.log(errors);
-if (errors) {
-  errors = JSON.parse(errors);
-  insertErrorMessages(errors);
-}
 
-function insertErrorMessages(ob) {
-  for (const key in ob) {
-    let input = document.querySelector(`input[name=${key}`);
-    let error = input.nextElementSibling;
-    error.textContent = errors[key];
-    input.nextElementSibling.classList.add("active");
-  }
-}
 
 
 // // return data
@@ -153,3 +138,19 @@ async function deleteUser(number){
 let data = await res.json();
 }
 
+// let cookies = document.cookie.split("=");
+// let errors = cookies.get("errors");
+// console.log(errors);
+// if (errors) {
+//   errors = JSON.parse(errors);
+//   insertErrorMessages(errors);
+// }
+
+// function insertErrorMessages(ob) {
+//   for (const key in ob) {
+//     let input = document.querySelector(`input[name=${key}`);
+//     let error = input.nextElementSibling;
+//     error.textContent = errors[key];
+//     input.nextElementSibling.classList.add("active");
+//   }
+// }

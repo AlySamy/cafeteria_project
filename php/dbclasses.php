@@ -39,19 +39,6 @@ class DB
         }
         
     }
-
-    // public function testPagination($tableName,$index)
-    // {
-    //     try{
-    //         $query = "SELECT * FROM $tableName WHERE ";
-    //         $sql = $this->con->prepare($query);
-    //         $sql->execute();
-    //         $data = $sql->fetchAll(PDO::FETCH_ASSOC);
-    //         return $data;
-    //     }catch (PDOException $e) {
-    //         echo "Error: ".$e->getMessage();
-    //     }
-    // }
     
       
     // get single user by id
