@@ -21,12 +21,6 @@ class DB
         }catch (PDOException $e) {
             echo "Error: ".$e->getMessage();
         }
-        $query = "SELECT * FROM $tableName";
-        $sql = $this->con->prepare($query);
-        $sql->execute();
-        $data = $sql->fetchAll(PDO::FETCH_ASSOC);
-        
-        return $data;
     }
     // get single user by id
     public function show($tableName, $id)
@@ -40,12 +34,7 @@ class DB
         }catch (PDOException $e) {
             echo "Error: ".$e->getMessage();
         }
-        $query = "SELECT * FROM $tableName where id = $id";
-        $sql = $this->con->prepare($query);
-        $sql->execute();
-        $data = $sql->fetch(PDO::FETCH_ASSOC);
-        
-        return $data;
+
     }
     // edit user
     public function update($tableName, $id, $data)
@@ -133,7 +122,7 @@ class DB
     public function getProducts($tableName)
     {
         try{
-            $query = "SELECT product.name,price,product_pic FROM `product` , `category` WHERE product.category_id=category.id ORDER BY category_id;";
+            $query = "SELECT product.name,price,product_pic,product.id FROM `product` , `category` WHERE product.category_id=category.id ORDER BY category_id;";
             $sql = $this->con->prepare($query);
             $sql->execute();
             $data = $sql->fetchAll(PDO::FETCH_ASSOC);
@@ -172,6 +161,22 @@ class DB
             echo "Error: ".$e->getMessage();
         }
      }
+
+     public function submitOrder($orderArr, $user_id, $room_number, $notes, $orderArrlength)
+    {
+
+        try {
+            $q = json_encode($orderArr);
+            
+            $query = "call test('$q',$user_id,$room_number,'$notes',$orderArrlength)";
+            $sql = $this->con->query($query);
+            $result = $sql->fetch(PDO::FETCH_ASSOC);
+            
+
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
 
     
 }
