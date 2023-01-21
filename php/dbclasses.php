@@ -14,6 +14,19 @@ class DB
      public function index($tableName)
      {
          try{
+             $query = "SELECT * FROM $tableName";
+             $sql = $this->con->prepare($query);
+             $sql->execute();
+             $data = $sql->fetchAll(PDO::FETCH_ASSOC);
+             return $data;
+         }catch (PDOException $e) {
+             echo "Error: ".$e->getMessage();
+         }
+         
+     }
+     public function index1($tableName)
+     {
+         try{
              $query = "SELECT * FROM $tableName where is_admin = 0";
              $sql = $this->con->prepare($query);
              $sql->execute();
@@ -66,17 +79,21 @@ class DB
         $sql->execute();
     }
     // update user
-    public function updateUser($tableName,$tableRoom, $id, $name,$email,$room,$img)
+    public function updateUser($tableName,$tableRoom,$id,$name,$email,$room,$img)
     {
-        $columns = '';
-        foreach ($data as $key => $value) {
-            $columns = $columns . $key . "=" . "'" . $value . "'" . ",";
+        try{
+            $query="UPDATE $tableName SET name='$name', email='$email',profile_pic='$img' WHERE id=$id";
+            $queryRoom="UPDATE $tableRoom SET Room_number = $room WHERE user_id=$id";
+            $sql=$this->con->prepare($query);
+            $sql->execute();
+            $sql2=$this->con->prepare($queryRoom);
+            $sql2->execute();   
+        }catch (PDOException $e) {
+            echo "Error: ".$e->getMessage();
         }
-        $columns = rtrim($columns, ",");
-        $query = "UPDATE $tableName SET $columns WHERE id=$id";
-        $sql = $this->con->prepare($query);
-        $sql->execute();
     }
+
+    
     // create user
     public function store($tableName, $data)
     {
@@ -119,6 +136,8 @@ class DB
         
         return $data;
     }
+
+   
     // get user password
     public function getUserpw($tableName, $email)
     {
@@ -151,9 +170,6 @@ class DB
     public function getProducts($tableName)
     {
         try{
-            $query="UPDATE $tableName SET name='$name', email='$email',profile_pic='$img' WHERE id=$id";
-            $queryRoom="UPDATE $tableRoom SET Room_number = $room WHERE user_id=$id";
-            $sql=$this->con->prepare($query);
             $query = "SELECT product.name,price,product_pic,product.id FROM `product` , `category` WHERE product.category_id=category.id ORDER BY category_id;";
             $sql = $this->con->prepare($query);
             $sql->execute();
@@ -194,10 +210,7 @@ class DB
     public function paginationSearch($tableName,$word)
     {
         try{
-            $query = "INSERT INTO ".$tableName." (";            
-            $query .= implode(",", array_keys($data)) . ') VALUES (';            
-            $query .= "'" . implode("','", array_values($data)) . "')";  
-            // var_dump($query);
+            $query = "SELECT name,price,product_pic FROM `product` where name like '%$word%';";
             $sql = $this->con->prepare($query);
             $sql->execute();
             $data = $sql->fetchAll(PDO::FETCH_ASSOC);
@@ -224,15 +237,7 @@ class DB
      }
 
     
-    // check user
-    public function checkUser($tableName, $email )
-    {
-        $query = "SELECT is_admin from $tableName where email='$email'";
-        $sql = $this->con->prepare($query);
-        $sql->execute();
-        $data = $sql->fetch(PDO::FETCH_ASSOC);
-        
-        return $data;
+    
     
      public function submitOrder($orderArr, $user_id, $room_number, $notes, $orderArrlength)
     {

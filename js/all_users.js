@@ -3,7 +3,7 @@
 async function test(number){
     
   let index=number;
-  let res = await fetch("/php/all_users.php",{
+  let res = await fetch("./php/all_users.php",{
   method:"post",
   headers:{
     "Content-Type":"application/json",
@@ -26,7 +26,7 @@ for(let i=0;i<numberOfElementsToDelete;i++)
 test(1);
 // numbers in pagination
 async function numberOfUsers(){
-  let res = await fetch("/php/countUsers.php");
+  let res = await fetch("./php/countUsers.php");
   let data = await res.json();
 numberOfPages(data);
 }
@@ -60,7 +60,7 @@ function createRow(obj) {
   deleteBtn.classList.add("btn","btn-danger","mx-2");
   userName.innerHTML = obj.name;
   userRoom.innerHTML = obj.Room_number;
-  img.src = `./images/background/${obj.profile_pic}`;
+  img.src = `./images/users/${obj.profile_pic}`;
   img.width="30";
   img.height="30";
   editBtn.innerHTML="Edit";
@@ -125,7 +125,7 @@ function createRow(obj) {
 async function deleteUser(number){
     
   let index=number;
-  let res = await fetch("/php/deleteOneUser.php",{
+  let res = await fetch("./php/deleteOneUser.php",{
   method:"post",
   headers:{
     "Content-Type":"application/json",
@@ -136,6 +136,7 @@ async function deleteUser(number){
 
 });
 let data = await res.json();
+location.reload();
 }
 
 // let cookies = document.cookie.split("=");
