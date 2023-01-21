@@ -74,8 +74,7 @@ async function getUserDataIndex(index) {
         });
         allData = await resAll.json();
         numberOfPages(allData);
-        console.log("fromto")
-
+        console.log(allData)
     }
     //  else if (dateFormatFrom && dateFormatFrom.match(rejexDate)) {
     //     let res = await fetch("php/filterDateFromChecks.php", {
@@ -93,7 +92,6 @@ async function getUserDataIndex(index) {
     //     console.log("from")
     // } 
     else {
-        console.log("all")
         let res = await fetch("php/getUserTotalPriceIndex.php", {
             method: "post",
             headers: {
@@ -251,7 +249,13 @@ function createOrdersUser(divTable, user_id) {
         newTableTR.appendChild(newTRth2);
         newTableTR.appendChild(newTRth3);
 
-        let userOrder = await getUserordes(user_id);
+        let userOrder;
+        if (dateFormatFrom && dateFormatFrom.match(rejexDate) && dateFormatTo && dateFormatTo.match(rejexDate)) {
+            userOrder = await getUserordesFilter(user_id,dateFormatFrom,dateFormatTo);
+        } else {
+            userOrder = await getUserordes(user_id);
+        }
+
 
         newTbody = document.createElement("tbody");
         newTable.appendChild(newTbody);
@@ -411,6 +415,24 @@ async function getUserordes(id) {
     return data;
 }
 
+// get users Orders filter    -   post
+async function getUserordesFilter(id, from, to) {
+    let res = await fetch("php/getOrdersFromTo.php", {
+        method: "post",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            "user_id": id,
+            "from": from,
+            "to": to
+        })
+
+    });
+    let data = await res.json();
+    return data;
+}
+
 // get order details ----- post
 async function getordeDetails(id) {
     let res = await fetch("php/getOrderDetailsChecks.php", {
@@ -449,13 +471,12 @@ select.addEventListener("change", function (e) {
     let value = select.value;
     if (value == "Users") {
         document.getElementsByClassName("pagination-div")[0].classList.remove('d-none');
-        //try
-        console.log("try");
-        console.log(allDataUsers);
         numberOfPages(allDataUsers);
         dateFormatFrom = '';
+        from.value = '';
         dateFormatTo = '';
-        
+        to.value = '';
+
         getUserDataIndex(1);
     } else {
         document.getElementsByClassName("pagination-div")[0].classList.add('d-none');

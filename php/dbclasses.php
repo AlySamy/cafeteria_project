@@ -202,6 +202,20 @@ class DB
         }
     }
 
+    // get single user orders by user_id and done from to
+    public function getOrderFromToAll($tableOrder, $from, $to,$id)
+    {
+        try {
+            $query = "SELECT DISTINCT $tableOrder.* FROM $tableOrder WHERE user_id = $id AND status = 'Done' AND DATE($tableOrder.created_at) BETWEEN '$from' AND '$to'";
+            $sql = $this->con->prepare($query);
+            $sql->execute();
+            $data = $sql->fetchAll(PDO::FETCH_ASSOC);
+            return $data;
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
+
     // get details of a order for user
     public function showOrderDetails($productOrderTable, $orderTable, $id)
     {
@@ -295,7 +309,8 @@ $db = new DB($con);
 // $db->getUserOrderFromTo('total_order','users');
 // $db->showOrderDetails('order_product','total_order',2);
 // $db->getUserOrderFrom('total_order','users','2023-01-13');
-$db->getUserOrderFromTo('total_order', 'users', '2023-01-14', '2023-01-18', 0);
+// $db->getUserOrderFromTo('total_order', 'users', '2023-01-14', '2023-01-18', 0);
+$db->getOrderFromToAll('total_order','users', '2023-01-10', '2023-01-12');
 
 // $db->getUserTotalPrice('users','total_order');
 

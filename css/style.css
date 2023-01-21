@@ -17,8 +17,8 @@ box-sizing: border-box;
 font-family: "Montserrat";
 }
 
-/*------ navbar ----- */
-.navbar-expand-lg{
+/* ------ navbar -----
+/* .navbar-expand-lg{
   background-color:#000000f7;
 }
 nav .logo{
@@ -59,7 +59,7 @@ nav .btn:hover{
 }
 
 /* ---- header ----- */
-header img{
+/*header img{
   height:100%;
   width: 100%;
 }
@@ -112,10 +112,10 @@ text-transform: uppercase;
   color: #CA8E46;
   background-color: white;
   transition: .5s all ease-in-out;
-}
+}*/
 
 /* ----- about -------- */
-.about h5 span{
+/*.about h5 span{
   font-size: 100px;
   line-height: .75em;
   margin-bottom: 20px;
@@ -133,10 +133,10 @@ text-transform: uppercase;
 }
 .about p{
   color:#999999
-}
+}*/
 
 /* ----- location --------- */
-
+/*
 .backimg{
   background-image: url(../images/background/3.jpg);
   height: 70vh;
@@ -159,19 +159,19 @@ text-transform: uppercase;
   color:#999999;
   font-size: 15px;
   
-}
+}*/
 
 /* ------ quote --------- */
-.quote h2{
+/*.quote h2{
   font-size: 27px;
   font-weight: 400;
   line-height: 1.5;
 
-}
+}*/
 
 
 /* ----- footer ------ */
-.footer-i i{
+/*.footer-i i{
     color: white;
     background-color: #CA8E46;
    
@@ -183,7 +183,7 @@ text-transform: uppercase;
   color: #CA8E46;
   background-color: white;
   transition: .5s all ease-in-out;
-}
+} */
 
 /* -------------------------------------------------------------------------- */
 /* checks page */
