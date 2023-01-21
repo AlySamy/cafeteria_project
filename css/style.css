@@ -111,6 +111,17 @@ nav .btn:hover {
 }
 .active {
   display: block !important;
+
+}
+/* ----- footer ------ */
+
+.footer-i i{
+    color: white;
+    background-color: #CA8E46;
+   
+    border-radius: 50%;
+    margin: 4px;
+    padding: 15px;
 }
 /*FOOTER*/
 .footer-i i {
