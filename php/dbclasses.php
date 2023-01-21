@@ -307,8 +307,8 @@ class DB
             $sql->execute();
             $data = $sql->fetchAll(PDO::FETCH_ASSOC);
             return $data;
-            $sql2=$this->con->prepare($queryRoom);
-            $sql2->execute();   
+            // $sql2=$this->con->prepare($queryRoom);
+            // $sql2->execute();   
         }catch (PDOException $e) {
             echo "Error: ".$e->getMessage();
         }
