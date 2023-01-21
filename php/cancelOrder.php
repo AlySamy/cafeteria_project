@@ -7,7 +7,6 @@ $con= new PDO($sql,'root','');
 // print_r($result[0]['id']);  
 
 $id=json_decode(file_get_contents('php://input'),true)['id'];
-var_dump($id);
 
 $query="DELETE FROM order_product WHERE order_id =$id;
 DELETE FROM total_order WHERE id = $id ";

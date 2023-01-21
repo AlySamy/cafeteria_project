@@ -85,6 +85,7 @@ function page(x)
         userOrderTable(users[k]);
       }
     }
+    createAction();
 }
 
 
