@@ -370,13 +370,29 @@ class DB
      }
 
 
+
+     public function submitOrder($orderArr, $user_id, $room_number, $notes, $orderArrlength)
+     {
+ 
+         try {
+             $q = json_encode($orderArr);
+             
+             $query = "call test('$q',$user_id,$room_number,'$notes',$orderArrlength)";
+             $sql = $this->con->query($query);
+             $result = $sql->fetch(PDO::FETCH_ASSOC);
+             
+ 
+         } catch (PDOException $e) {
+             echo "Error: " . $e->getMessage();
+         }
+     }
     
     
     
 }
 
 
-$db = new DB($con);
+//$db = new DB($con);
 //$id=$db->index('users');
 // $db->show('users',1);
 // $db->store('users' , ['name'=>'ahmed','email'=>'ahmed@gmail.com', 'password'=>'12345678', 'profile_pic'=>'./images/0.12204800 1672674506.jpeg']);
