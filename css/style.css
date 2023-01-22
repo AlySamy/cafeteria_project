@@ -41,9 +41,9 @@ nav .nav-item a {
   margin-right: 15px;
   font-weight: 500;
 }
-nav .nav-item a:hover {
+/* nav .nav-item a:hover {
   color: #ca8e46;
-}
+} */
 
 nav .btn,
 .addUser {
@@ -61,8 +61,8 @@ nav .btn,
   background-color: #ca8e46;
 }
 nav .btn:hover {
-  color: #ca8e46;
-  background-color: white;
+  background-color: #ca8e46;
+  color: white;
   transition: 0.5s all ease-in-out;
 }
 

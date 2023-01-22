@@ -102,6 +102,44 @@ class DB
         }
     }
 
+    public function updateUserExceptRoom($tableName,$id,$name,$email,$img)
+    {
+        try{
+            $query="UPDATE $tableName SET name='$name', email='$email',profile_pic='$img' WHERE id=$id";
+            // $queryRoom="UPDATE $tableRoom SET Room_number = $room WHERE user_id=$id";
+            $sql=$this->con->prepare($query);
+            $sql->execute();
+            // $sql2=$this->con->prepare($queryRoom);
+            // $sql2->execute();   
+        }catch (PDOException $e) {
+            echo "Error: ".$e->getMessage();
+        }
+    }
+
+    public function updateUserExceptEmail($tableName,$tableRoom,$id,$name,$room,$img)
+    {
+        try{
+            $query="UPDATE $tableName SET name='$name', profile_pic='$img' WHERE id=$id";
+            $queryRoom="UPDATE $tableRoom SET Room_number = $room WHERE user_id=$id";
+            $sql=$this->con->prepare($query);
+            $sql->execute();
+            $sql2=$this->con->prepare($queryRoom);
+            $sql2->execute();   
+        }catch (PDOException $e) {
+            echo "Error: ".$e->getMessage();
+        }
+    }
+
+    public function updateUserExceptEmailRoom($tableName,$id,$name,$img)
+    {
+        try{
+            $query="UPDATE $tableName SET name='$name', profile_pic='$img' WHERE id=$id";
+            $sql=$this->con->prepare($query);
+            $sql->execute();  
+        }catch (PDOException $e) {
+            echo "Error: ".$e->getMessage();
+        }
+    }
     
     // create user
     public function store($tableName, $data)
@@ -315,13 +353,36 @@ class DB
             $sql = $this->con->prepare($query);
             $sql->execute();
             $data = $sql->fetchAll(PDO::FETCH_ASSOC);
-            // var_dump($data);
-            // if($data){
-            //     return false;
+            
+            return $data;   
+        }catch (PDOException $e) {
+            echo "Error: ".$e->getMessage();
+        }
+    }
 
-            // }else{
-            //    return true;
-            // }
+    public function validateUserRoom($room)
+    {
+        try{
+            $query = "SELECT Room_number FROM user_room where Room_number =$room";
+            $sql = $this->con->prepare($query);
+            $sql->execute();
+            $data = $sql->fetchAll(PDO::FETCH_ASSOC);
+            // var_dump($data);    
+            return $data;   
+        }catch (PDOException $e) {
+            echo "Error: ".$e->getMessage();
+        }
+    }
+
+    public function validateUserEmail($email)
+    {
+        try{
+            // SELECT * FROM $tableName1 INNER JOIN $tableName2 on $tableName1.id =$tableName2.user_id
+            $query = "SELECT email FROM users where  email='$email'";
+            // $query="SELECT email, Room_number from users , user_room where users.id = user_room.user_id and   email = '$email' and Room_number = $room";
+            $sql = $this->con->prepare($query);
+            $sql->execute();
+            $data = $sql->fetchAll(PDO::FETCH_ASSOC);
             
             return $data;   
         }catch (PDOException $e) {
@@ -596,7 +657,8 @@ class DB
 }
 
 
-//$db = new DB($con);
+$db = new DB($con);
+$db->validateUserRoom(200); 
 //$id=$db->index('users');
 // $db->show('users',1);
 // $db->store('users' , ['name'=>'ahmed','email'=>'ahmed@gmail.com', 'password'=>'12345678', 'profile_pic'=>'./images/0.12204800 1672674506.jpeg']);

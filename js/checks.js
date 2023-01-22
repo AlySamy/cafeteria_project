@@ -326,12 +326,13 @@ function createRowOrdersTime(newTbody, item) {
 
                     let card = document.createElement("div");
                     card.classList.add("card", "rounded-4", "col-4", "m-2", "bg-white");
-                    card.style.width = "12rem";
+                    card.style.width = "15rem";
                     CardDiv.appendChild(card);
 
                     let img = document.createElement("img");
                     img.setAttribute("src", "./images/products/" + product.product_pic);
                     img.classList.add("card-img-top");
+                    img.height= 200;
                     card.appendChild(img);
 
                     let cardDiv = document.createElement("div");

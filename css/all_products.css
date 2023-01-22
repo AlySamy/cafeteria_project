@@ -31,6 +31,12 @@ a{
   --bs-table-hover-bg: #edd19033;
   color: var(--bs-table-color);
 }
+.addUser{
+  background-color:#CA8E46 ;
+  color: white;
+  border: transparent;
+  padding: 7px 15px;
+}
 .editBtn,
 .submit {
   background-color: #ca8e46;
