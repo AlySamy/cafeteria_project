@@ -2,11 +2,11 @@ async function getAllCategory() {
   let result = await fetch("./php/getAllCategory.php");
   let data = await result.json();
 
-  manpulateResponse(data);
+  manpulateResponseCategory(data);
 }
-getAllCategory();
+getAllCategory();   
 
-function manpulateResponse(data) {
+function manpulateResponseCategory(data) {
   data.forEach((obj) => {
     createNewOption(obj);
   });
