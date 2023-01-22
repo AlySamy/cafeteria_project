@@ -44,7 +44,7 @@ function page(x)
        if(k==arr.length)
        {
         return;
-       }
+       }    
         createProduct(arr[k])
     }
 }
@@ -64,7 +64,6 @@ async function search() {
 
 function displaySearchedData(data)
 {
-    document.getElementById("hide").style.display='none';
     document.getElementById("hide2").style.display='none';
     document.getElementById("hide4").style.display='none';
 
@@ -89,7 +88,6 @@ function displaySearchedData(data)
     for (let i = 0; i < numberOfElementsToDelete; i++) {
       document.getElementsByClassName("search-product")[0].remove();
     }
-        document.getElementById("hide").style.display='block';
         document.getElementById("hide2").style.display='block';
         document.getElementById("hide4").style.display='block';
 
@@ -97,20 +95,6 @@ function displaySearchedData(data)
         document.getElementsByClassName("pagination-div")[0].classList.remove('hidePagination');
     }
 }
-
-async function getLatestOrder() {
-  fetch("./php/getLatestOrder.php")
-    .then((response) => response.json())
-    .then((data) => {
-      lastOrder(data);
-    });
-}
-function lastOrder(data) {
-  for (let k = 0; k < data.length; k++) {
-    createLatestProduct(data[k]);
-  }
-}
-getLatestOrder();
 
 function createProduct(object)
 {
@@ -127,13 +111,13 @@ function createProduct(object)
     let price=document.createElement("span");
 
     div1.setAttribute("id","cart-div");
-    div1.classList.add("product","my-3","col-3","rounded-4","bg-black");
+    div1.classList.add("product","my-5","col-3","rounded-4","bg-black");
     div2.classList.add("card","rounded-4");
     div2.style.width="18rem";
     img.setAttribute("src","./images/products/"+object.product_pic);
     img.classList.add("card-img-top");
     div3.classList.add("card-body");
-    h4.classList.add("card-title","text-center","text-uppercase","fs-5");
+    h4.classList.add("card-title","text-center","text-uppercase");
     h4.innerHTML=object.name;
     p.classList.add("card-text","d-flex","justify-content-center","fs-5");
     // p.innerHTML=object.price;
@@ -181,73 +165,6 @@ function createProduct(object)
     
 }
 
-function createLatestProduct(object)
-{
-    let parent=document.getElementById("row1");
-    let div1=document.createElement("div");
-    let div2=document.createElement("div");
-    let img=document.createElement("img");
-    let div3=document.createElement("div");
-    let h4=document.createElement("h4");
-    let p=document.createElement("span");
-    div1.setAttribute("id","cart-div");
-    div1.classList.add("col-md-5","my-3","rounded-4","bg-black");
-    div2.classList.add("card","rounded-4");
-    div2.style.width="18rem";
-    img.setAttribute("src","./images/products/"+object.product_pic);
-    img.classList.add("card-img-top");
-    div3.classList.add("card-body");
-    h4.classList.add("card-title","text-center","text-uppercase","fs-5");
-    h4.innerHTML=object.name;
-    p.classList.add("card-text","d-flex","justify-content-center","fs-5");
-    
-    let dollar=document.createElement("span");
-    let price=document.createElement("span");
-
-    dollar.innerHTML="$";
-    price.innerHTML=object.price;
-
-    p.appendChild(price);
-    p.appendChild(dollar);
-
-    div1.appendChild(div2);
-    div2.appendChild(img);
-    div2.appendChild(div3);
-    div3.appendChild(h4)
-    div3.appendChild(p)
-    parent.appendChild(div1)
-    let flag=0;
-    let id=object.id;
-
-    div1.addEventListener("click",(e)=>
-    {
-        let numberOfTr=document.getElementById("tbody").childNodes;
-        if(numberOfTr.length==0)
-        {
-            addToCart(e.target.parentNode.children[1].children,id);
-        }
-        else
-        {
-           for(let i =0;i<numberOfTr.length;i++)
-            {
-                if(numberOfTr[i].firstChild.innerHTML==h4.innerHTML)
-                {
-                    flag=0;
-                    return;
-                }
-                else
-                {
-                    flag=1;
-                }
-            }
-        }
-        if(flag)
-        {
-            addToCart(e.target.parentNode.children[1].children,id);
-        }
-    })
-    
-}
 
 
 function createSearchProduct(object)
@@ -266,7 +183,7 @@ function createSearchProduct(object)
     img.setAttribute("src","./images/products/"+object.product_pic);
     img.classList.add("card-img-top");
     div3.classList.add("card-body");
-    h4.classList.add("card-title","text-center","text-uppercase","fs-5");
+    h4.classList.add("card-title","text-center","text-uppercase");
     h4.innerHTML=object.name;
     p.classList.add("card-text","d-flex","justify-content-center","fs-5");
    
@@ -411,6 +328,30 @@ function addToCart(x,id)
     
 }
 
+async function getUsers()
+{
+    fetch("./php/adminHome.php",{
+    method:'GET'
+    }).then(response => 
+        response.json()
+        
+    ).then((data)=>{
+    createOptions(data);
+    }) 
+}
+
+getUsers();
+
+function createOptions(data) {
+    data.forEach((element) => {
+        let selected = document.querySelector("select");
+        let newOptin = document.createElement("option");
+        newOptin.value = element.id;
+        newOptin.text = element.name;
+        selected.appendChild(newOptin);
+    })
+}
+
 async function getRooms()
 {
     fetch("./php/getRooms.php",{
@@ -436,15 +377,17 @@ function createRoom(obj)
 }
 
 let orderArr=[];
-async function submitOrder(){   
+async function submitOrder(){
 
     //change the id obj.id
+    let user_id=document.getElementById("select").value;
     let notes=document.getElementById("notes").value;
     let tbody=document.getElementById("tbody");
     let room_number=document.getElementById("checkBox").value;
 
+    // console.log(Number.isInteger(user_id))  ;
 
-    if(room_number)
+    if(room_number && Number(user_id))
     {
         for(let i=0;i<tbody.childNodes.length;i++)
         {
@@ -458,12 +401,13 @@ async function submitOrder(){
         }
         let orderArrLength=orderArr.length;
         
-        let res = await fetch("./php/submitUserOrder.php",{
+        let res = await fetch("./php/submitOrder.php",{
             method:"post",
             headers:{
           "Content-Type":"application/json",
                     },
         body:JSON.stringify({
+              "user_id":user_id,
               "notes":notes,
               "orderArrlength":orderArrLength,
               "room_number":room_number,
@@ -477,17 +421,3 @@ async function submitOrder(){
 
 
 
-// {
-//     user_id:123,
-//     notes:chilck,
-//     lengthOfArray:
-//     order:
-//     [{
-//         order_id:3,
-//         product_id:1,
-//         quantity:5,
-//         productPrice:20;
-//         total_prodcut_price(calc);
-//     }
-//     ]
-// }

@@ -4,6 +4,9 @@
     box-sizing: border-box;
     font-family: "Montserrat";
 }
+a{
+    text-decoration: none !important;
+  }
 
 .all_users{
     min-height: 100vh;
@@ -13,8 +16,33 @@
     grid-template-rows:auto 1fr auto ;
 
 }
-
 .table {
+    --bs-table-color: #ca8e46;
+    --bs-table-bg: transparent;
+    --bs-table-border-color: var(--bs-border-color);
+    --bs-table-accent-bg: transparent;
+    --bs-table-striped-color: #ca8e46;
+    --bs-table-striped-bg: rgba(0, 0, 0, 0.05);
+    --bs-table-active-color: #ca8e46;
+    --bs-table-active-bg: rgba(0, 0, 0, 0.1);
+    --bs-table-hover-color: #ca8e46;
+    --bs-table-hover-bg: #edd19033;
+    color: var(--bs-table-color);
+  }
+  .editBtn,
+  .submit {
+    background-color: #ca8e46;
+    color: white;
+    border: transparent;
+  }
+  .editBtn,
+  .submit:hover {
+    background-color: #ca8e46;
+    color: white;
+    border: transparent;
+  }
+
+/* .table {
     --bs-table-color: #CA8E46;
     --bs-table-bg: transparent;
     --bs-table-border-color: var(--bs-border-color);
@@ -53,7 +81,7 @@
     background-color:#CA8E46 ;
     color: white;
     border: transparent;
-}
+} */
 .pagination li
 {
     margin: 10px;

@@ -26,4 +26,14 @@ echo "
 }
 // echo json_encode($data);
 
+// if($data){
+//   $db->updateProuductEpxeptName($productId,$productprice,$catagorypicuplode,$productStatus,$catagoryId);
+//   setcookie("errors", json_encode(['errors'=>'data exist']),0,'/');
+//   header('Location:../all_users.html');
 
+// }else{
+  
+//   $db->udateproductData($productId,$productName,$productprice,$catagorypicuplode,$productStatus,$catagoryId);
+//   header('Location:../all_product.html');
+//   setcookie('errors','', -1, '/');
+// }

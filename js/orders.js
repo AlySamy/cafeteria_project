@@ -34,7 +34,7 @@ function createTable(element) {
         } else {
             strTime = '0' + hours + ':' + minutes + ' ' + ampm;
         }
-    }else{
+    } else {
         strTime = date[3] + ":" + date[4] + " " + ampm;
     }
     orderDate.innerHTML = date[0] + '-' + date[1] + '-' + date[2] + "  " + strTime;
@@ -74,7 +74,7 @@ function createTable(element) {
     option3.innerHTML = "Cancel";
     selectBox.appendChild(option3);
 
-    selectBox.addEventListener("change", function() {
+    selectBox.addEventListener("change", function () {
         change_status(selectBox.value, element.id);
     })
 
@@ -100,7 +100,7 @@ function createTable(element) {
 
         let numberOfElementsToDelete = document.querySelectorAll(".fold-content").length;
         if (numberOfElementsToDelete) {
-            for (let i = 0; i < numberOfElementsToDelete-1; i++) {
+            for (let i = 0; i < numberOfElementsToDelete - 1; i++) {
                 document.querySelectorAll(".fold-content")[0].remove();
             }
         }
@@ -115,6 +115,14 @@ function createTable(element) {
             CardDiv.classList.add("d-flex", "flex-wrap", "fold-content")
             divTable.appendChild(CardDiv);
 
+            let showTotal = document.createElement("div");
+            let showSpan = document.createElement("span");
+            showTotal.classList.add("d-flex", "justify-content-end", "fw-bold", "me-4");
+            showSpan.innerHTML = "Total Amount = " + element.total_price;
+
+            divTable.appendChild(showTotal);
+            showTotal.appendChild(showSpan);
+
             let userOrders = await userOrder(element.id);
 
             userOrders.forEach((product) => {
@@ -125,7 +133,8 @@ function createTable(element) {
 
                 let img = document.createElement("img");
                 img.setAttribute("src", "./images/products/" + product.product_pic);
-                img.classList.add("card-img-top", "rounded-4");
+                img.classList.add("card-img-top");
+                img.height = 200;
                 card.appendChild(img);
 
                 let cardDiv = document.createElement("div");
@@ -191,10 +200,10 @@ async function change_status(status, order_id) {
     change.append("status", status);
     change.append("order_id", order_id);
     let res = await fetch("php/change_status.php", {
-      method: "post",
-      body: change,
+        method: "post",
+        body: change,
     });
     let data = await res.json();
     console.log(data);
     location.reload();
-  }
+}

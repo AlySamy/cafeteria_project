@@ -35,7 +35,7 @@ $user_id = $db->getUserId('users', "$email")['id'];
 
 if ($is_admin) {
     $_SESSION['user_id'] = $user_id;
-    header("location:admin.html");
+    header("location:adminHome.html");
 } else {
     $_SESSION['user_id'] = $id;
     header("location:userHome.html");

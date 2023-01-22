@@ -331,7 +331,7 @@ function createRowOrdersTime(newTbody, item) {
 
                     let img = document.createElement("img");
                     img.setAttribute("src", "./images/products/" + product.product_pic);
-                    img.classList.add("card-img-top", "rounded-4");
+                    img.classList.add("card-img-top");
                     card.appendChild(img);
 
                     let cardDiv = document.createElement("div");

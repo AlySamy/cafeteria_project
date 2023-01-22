@@ -26,8 +26,8 @@
   </head>
 
   <body>
-    <!-- Start Navbar -->
-    <nav class="navbar navbar-expand-lg ">
+     <!-- Start Navbar -->
+     <nav class="navbar navbar-expand-lg ">
       <div class="container">
         <a href="index.html" class="navbar-brand">
           <!-- <img alt="" src="./images/icon.png" /> -->
@@ -40,41 +40,53 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse text-center " id="navbarSupportedContent">
-          <ul class="navbar-nav mb-2 mx-auto mb-lg-0 ">
+          <ul class="navbar-nav mb-2 mx-auto mb-lg-0 text-white">
             <li class="nav-item">
-              <a class="nav-link " aria-current="page" href="#home">Home</a>
+              <a class="nav-link " aria-current="page" href="userHome.html">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#about">Products</a>
+              <a class="nav-link" href="all_product.html">Products</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#contact">Users</a>
+              <a class="nav-link" href="all_users.html">Users</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#gallery">Orders</a>
+              <a class="nav-link" href="orders.html">Orders</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#gallery">checks</a>
+              <a class="nav-link" href="tableCheck.html">checks</a>
             </li>
           </ul>
           <div class="d-flex align-items-center">
             <div>
-              <img src="./images/pic/images/admin.png" class="rounded-5" alt="" srcset="" width="40px" height="40px">
+              <img id="user_img" src="" class="rounded-5" alt="" srcset="" width="40px" height="40px">
             </div>
-            <span class="text-white mx-3 name">Alaa Nassar</span>
-            <!-- <button class="btn " type="submit">Log Out</button> -->
-            <div class="dropdown">
-              <button class="icon dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-              </button>
-              <div class="dropdown-menu text-center" aria-labelledby="dropdownMenuButton1">
-                <button class="btn "><a class="dropdown-item" href="#">Log out</a></li>
-                
-              </div>
-            </div>
+            <span id="user_name" class="text-white mx-3 name"></span>
+            <button class="btn btn-primary" type="submit" id="log_out_btn">Log Out</button>
+            <!-- <div class="dropdown">
+                <button class="icon dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                </button>
+                <div class="dropdown-menu text-center" aria-labelledby="dropdownMenuButton1">
+                  <button id="log_out_btn" class="btn "><a class="dropdown-item"href="#">Log out</a></li>
+                  
+                </div> -->
+            <!-- <div class="dropdown">
+                    <button class="icon dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                    </button>
+                    <div class="dropdown-menu text-center" aria-labelledby="dropdownMenuButton1">
+                      <button class="btn "><a class="dropdown-item" href="#">Log out</a></li>
+                      
+                    </div>
+                </div> -->
+
+
+
           </div>
         </div>
       </div>
+
     </nav>
+    <!-- End Navbar --> 
     <!-- End Navbar -->
     <section class="login">
       <div class="login_backimg">
@@ -220,7 +232,9 @@
       integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
       crossorigin="anonymous"
     ></script>
+    
     <script src="js/list_catagory.js"></script>
     <script src="js/addProductCookie.js"></script>
+    <script src="js/session.js"></script>
   </body>
 </html>

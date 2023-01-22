@@ -4,14 +4,20 @@
   box-sizing: border-box;
   font-family: "Montserrat";
 }
-.all_products {
-  height: 76vh;
+a{
+  text-decoration: none !important;
+}
+.all_products{
+  min-height: 100vh;
   font-size: 18px;
   text-transform: capitalize;
+  display: grid;
+  grid-template-rows:auto 1fr auto ;
+
 }
-.usertable {
+/* .usertable {
   height: 100%;
-}
+} */
 .table {
   --bs-table-color: #ca8e46;
   --bs-table-bg: transparent;
@@ -61,3 +67,23 @@
 .active {
   display: block !important;
 }
+.btn-file {
+  position: relative;
+  overflow: hidden;
+}
+.file{
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 100px;
+  text-align: right;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  outline: none;
+  background: white;
+  cursor: inherit;
+  display: block;
+}
+

@@ -14,71 +14,78 @@
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css'>
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.1.4/dist/css/datepicker.min.css'>
 
-    <style>
-        /*@charset "UTF-8";
-        @import url("https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
-        @import url(https://fonts.googleapis.com/css?family=Oswald:700);
-        @import url(https://fonts.googleapis.com/css?family=Droid+Serif);*/
-    </style>
+    
+  
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 
     <link rel="stylesheet" href="./css/navbar.css">
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/check.css">
 </head>
 
 <body class="   bg-black">
     <div class="page">
-        <!-- Start Navbar -->
-    <nav class="navbar navbar-expand-lg ">
-        <div class="container">
-          <a href="index.html" class="navbar-brand">
-            <!-- <img alt="" src="./images/icon.png" /> -->
-  
-            <span class="logo">Cafetria</span>
-          </a>
-  
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse text-center " id="navbarSupportedContent">
-            <ul class="navbar-nav mb-2 mx-auto mb-lg-0 ">
-              <li class="nav-item">
-                <a class="nav-link " aria-current="page" href="#home">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#about">Products</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#contact">Users</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#gallery">Orders</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#gallery">checks</a>
-              </li>
-            </ul>
-            <div class="d-flex align-items-center">
-              <div>
-                <img src="./images/pic/images/admin.png" class="rounded-5" alt="" srcset="" width="40px" height="40px">
-              </div>
-              <span class="text-white mx-3 name">Alaa Nassar</span>
-              <!-- <button class="btn " type="submit">Log Out</button> -->
-              <div class="dropdown">
-                <button class="icon dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                </button>
-                <div class="dropdown-menu text-center" aria-labelledby="dropdownMenuButton1">
-                  <button class="btn "><a class="dropdown-item" href="#">Log out</a></li>
-                  
-                </div>
-              </div>
-            </div>
+  <!-- Start Navbar -->
+  <nav class="navbar navbar-expand-lg ">
+    <div class="container">
+      <a href="index.html" class="navbar-brand">
+        <!-- <img alt="" src="./images/icon.png" /> -->
+
+        <span class="logo">Cafetria</span>
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse text-center " id="navbarSupportedContent">
+        <ul class="navbar-nav mb-2 mx-auto mb-lg-0 text-white">
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="adminHome.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="all_product.html">Products</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="all_users.html">Users</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="orders.html">Orders</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="tableCheck.html">checks</a>
+          </li>
+        </ul>
+        <div class="d-flex align-items-center">
+          <div>
+            <img id="user_img" src="" class="rounded-5" alt="" srcset="" width="40px" height="40px">
           </div>
+          <span id="user_name" class="text-white mx-3 name"></span>
+          <button class="btn btn-primary" type="submit" id="log_out_btn">Log Out</button>
+          <!-- <div class="dropdown">
+              <button class="icon dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              </button>
+              <div class="dropdown-menu text-center" aria-labelledby="dropdownMenuButton1">
+                <button id="log_out_btn" class="btn "><a class="dropdown-item"href="#">Log out</a></li>
+                
+              </div> -->
+          <!-- <div class="dropdown">
+                  <button class="icon dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                  </button>
+                  <div class="dropdown-menu text-center" aria-labelledby="dropdownMenuButton1">
+                    <button class="btn "><a class="dropdown-item" href="#">Log out</a></li>
+                    
+                  </div>
+              </div> -->
+
+
+
         </div>
-      </nav>
+      </div>
+    </div>
+
+  </nav>
       <!-- End Navbar -->
 
         <!-- checks -->
@@ -146,13 +153,20 @@
         </div>
     </div>
 
-    <div class="pagination-div container d-flex justify-content-center">
+    <div class="pagination-div bg-black d-flex justify-content-center pt-3">
         <nav aria-label="Page navigation example">
             <ul class="pagination" id="pagination">
 
             </ul>
         </nav>
     </div>
+    <!-- <div class="pagination bg-black d-flex justify-content-center pt-3">
+      <nav aria-label="Page navigation example">
+        <ul class="pagination" id="pagination">
+
+        </ul>
+      </nav>
+    </div> -->
 
     <!-- Start Footer -->
     <footer class="py-4 bg-black text-white">
@@ -210,6 +224,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
     <script src="./js/checks.js"></script>
+    <script src="js/session.js"></script>
 </body>
 
 </html>

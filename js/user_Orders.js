@@ -207,8 +207,9 @@ function userOrderTable(element) {
         CardDiv.appendChild(card);
 
         let img = document.createElement("img");
-        img.setAttribute("src", "./images/misc/" + product.product_pic);
-        img.classList.add("card-img-top", "rounded-4");
+        img.setAttribute("src", "./images/products/" + product.product_pic);
+        img.classList.add("card-img-top");
+        img.height = 200;
         card.appendChild(img);
 
         let cardDiv = document.createElement("div");

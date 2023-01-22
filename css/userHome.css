@@ -5,18 +5,20 @@
 }
 .table-div{
  
-    height:600px;
+    height:60vh;
     background-color: white;
     border-radius: 10px;
-    padding: 5px;
-    overflow-y: auto;
+    padding: 10px;
+    overflow-y: auto  ;
     position: absolute;
     top: 35%;
     right: 100px;
 }
 .table-div h2,.table-div h3{
-    margin-top: 10px;
+    margin-top: 20px;
     color: #ca8e46;
+    font-size: 16px;
+    color: black;
 }
 .btn-dark{
     /* background-color: #ca8e46;
@@ -52,23 +54,40 @@
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
     border: 1px solid transparent;
-
     color: black;
-    /* background-color: #ca8e46; */
-    /* color: white; */
+   
 }
 .card .card-img-top{
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     border: 1px solid transparent;
 }
-.pagination li a
+/* .pagination li a
 {
     background-color: transparent;
     padding: 20px;
     color: crimson;
     border: none;
     font-size: 20px;
+} */
+.pagination li
+{
+    margin: 10px;
+    cursor: pointer;
+}
+
+.pagination li a
+{
+    background-color: transparent;
+padding: 15px;
+color: #CA8E46;
+    font-size: 20px;
+    border: transparent;
+}
+.page-link:hover {
+    z-index: 2;
+    color: white;
+    background-color: #edd19033;
 }
 .card img
 {

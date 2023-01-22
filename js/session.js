@@ -17,6 +17,7 @@ function addUserData(obj) {
   userName.innerHTML = obj.name;
   let userPic = document.getElementById("user_img");
   userPic.src = `./images/users/${obj.profile_pic}`;
+  console.log( userPic.src)
 }
 
 let logOutBtn = document.getElementById("log_out_btn");

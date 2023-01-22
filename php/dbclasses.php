@@ -137,7 +137,7 @@ class DB
     }
 
     public function allProducts($index){
-        $query = "SELECT * FROM product limit $index,3";
+        $query = "SELECT * FROM product limit $index,4";
         $sql=$this->con->prepare($query);
         $sql->execute();
         $data = $sql->fetchAll(PDO::FETCH_ASSOC);
@@ -537,7 +537,7 @@ class DB
     //get users from total_orders
     public function users_data($tableName1, $tableName2, $tableName3)
     {
-        $query = "SELECT $tableName1.id, $tableName1.status, $tableName1.created_at, $tableName2.name, $tableName3.Room_number FROM $tableName1, $tableName2, $tableName3 
+        $query = "SELECT $tableName1.id, $tableName1.status, $tableName1.total_price, $tableName1.created_at, $tableName2.name, $tableName3.Room_number FROM $tableName1, $tableName2, $tableName3 
         WHERE $tableName1.user_id = $tableName2.id and $tableName1.user_id = $tableName3.user_id and ($tableName1.status = 'Processing' OR $tableName1.status = 'Out for delivery')";
         $sql = $this->con->prepare($query);
         $sql->execute();

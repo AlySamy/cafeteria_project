@@ -17,6 +17,9 @@ main colors
   box-sizing: border-box;
   font-family: "Montserrat";
 }
+a{
+  text-decoration: none !important;
+}
 
 /*------ navbar ----- */
 .navbar-expand-lg {
@@ -30,6 +33,9 @@ nav .logo {
   font-family: "Mrs Saint Delafield";
   letter-spacing: 2px;
 }
+nav .btn a:hover{
+ color:  #ca8e46;
+}
 nav .nav-item a {
   color: #fff;
   margin-right: 15px;
@@ -42,7 +48,6 @@ nav .nav-item a:hover {
 nav .btn,
 .addUser {
   text-align: center;
-  color: #fff;
   border-radius: 0px;
   outline: 0;
   font-weight: 800;

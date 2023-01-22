@@ -132,6 +132,6 @@
     // for insert user 
     if ($res && $res1) {
         $_SESSION['user_id'] = $user_id;
-        header("location:index.html");
+        header("location:userHome.html");
         exit();
     }
