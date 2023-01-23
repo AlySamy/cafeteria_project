@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Mrs+Saint+Delafield&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -31,7 +32,8 @@ a{
   --bs-table-hover-bg: #edd19033;
   color: var(--bs-table-color);
 }
-.addUser{
+.addUser,
+.addUser:hover{
   background-color:#CA8E46 ;
   color: white;
   border: transparent;
@@ -43,7 +45,7 @@ a{
   color: white;
   border: transparent;
 }
-.editBtn,
+.editBtn:hover,
 .submit:hover {
   background-color: #ca8e46;
   color: white;

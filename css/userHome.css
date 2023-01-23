@@ -1,7 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Mrs+Saint+Delafield&display=swap");
+*{
+    font-family: "Montserrat";
+}
 .pagination li
 {
     margin: 10px;
     cursor: pointer;
+}
+.add{
+    border-bottom: 2px solid #ca8e46;
 }
 .table-div{
  
@@ -100,13 +107,13 @@ color: #CA8E46;
 } */
 .card-body h4
 {
-    font-family: 'Moon Dance', cursive;
+    font-family: 'Montserrat';
     padding: 10px;
 }
 
 .card-body p
 {
-    font-family: 'Moon Dance', cursive;
+    font-family: 'Montserrat';
     padding: 0px 10px 10px 10px; 
 }
 
