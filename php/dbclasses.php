@@ -525,10 +525,51 @@ class DB
         }
     }
 
+    // get users who made orders and done from to
+    public function getUserOrderFromAll($tableOrder, $tableUsers, $from)
+    {
+        try {
+            $query = "SELECT DISTINCT $tableUsers.*, sum(total_price) as total_price FROM $tableOrder, $tableUsers WHERE user_id = $tableUsers.id AND status = 'Done' AND DATE($tableOrder.created_at) BETWEEN '$from' AND DATE(now()) GROUP BY(user_id)";
+            $sql = $this->con->prepare($query);
+            $sql->execute();
+            $data = $sql->fetchAll(PDO::FETCH_ASSOC);
+            return $data;
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
+
     public function getUserOrderFromTo($tableOrder, $tableUsers, $from, $to, $index)
     {
         try {
             $query = "SELECT DISTINCT $tableUsers.*, sum(total_price) as total_price FROM $tableOrder, $tableUsers WHERE user_id = $tableUsers.id AND status = 'Done' AND DATE($tableOrder.created_at) BETWEEN '$from' AND '$to' GROUP BY(user_id) LIMIT $index,2";
+            $sql = $this->con->prepare($query);
+            $sql->execute();
+            $data = $sql->fetchAll(PDO::FETCH_ASSOC);
+            return $data;
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
+
+    // get users who made orders and done from to
+    public function getUserOrderToAll($tableOrder, $tableUsers, $to)
+    {
+        try {
+            $query = "SELECT DISTINCT $tableUsers.*, sum(total_price) as total_price FROM $tableOrder, $tableUsers WHERE user_id = $tableUsers.id AND status = 'Done' AND DATE($tableOrder.created_at) <= '$to' GROUP BY(user_id)";
+            $sql = $this->con->prepare($query);
+            $sql->execute();
+            $data = $sql->fetchAll(PDO::FETCH_ASSOC);
+            return $data;
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
+
+    public function getUserOrderTo($tableOrder, $tableUsers, $to, $index)
+    {
+        try {
+            $query = "SELECT DISTINCT $tableUsers.*, sum(total_price) as total_price FROM $tableOrder, $tableUsers WHERE user_id = $tableUsers.id AND status = 'Done' AND DATE($tableOrder.created_at) <= '$to' GROUP BY(user_id) LIMIT $index,2";
             $sql = $this->con->prepare($query);
             $sql->execute();
             $data = $sql->fetchAll(PDO::FETCH_ASSOC);
@@ -557,6 +598,34 @@ class DB
     {
         try {
             $query = "SELECT DISTINCT $tableOrder.* FROM $tableOrder WHERE user_id = $id AND status = 'Done' AND DATE($tableOrder.created_at) BETWEEN '$from' AND '$to'";
+            $sql = $this->con->prepare($query);
+            $sql->execute();
+            $data = $sql->fetchAll(PDO::FETCH_ASSOC);
+            return $data;
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
+
+    // get single user orders by user_id and done from
+    public function getOrderFromAll($tableOrder, $from, $id)
+    {
+        try {
+            $query = "SELECT DISTINCT $tableOrder.* FROM $tableOrder WHERE user_id = $id AND status = 'Done' AND DATE($tableOrder.created_at) BETWEEN '$from' AND DATE(now())";
+            $sql = $this->con->prepare($query);
+            $sql->execute();
+            $data = $sql->fetchAll(PDO::FETCH_ASSOC);
+            return $data;
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
+
+    // get single user orders by user_id and done from
+    public function getOrderToAll($tableOrder, $to, $id)
+    {
+        try {
+            $query = "SELECT DISTINCT $tableOrder.* FROM $tableOrder WHERE user_id = $id AND status = 'Done' AND DATE($tableOrder.created_at) <= '$to'";
             $sql = $this->con->prepare($query);
             $sql->execute();
             $data = $sql->fetchAll(PDO::FETCH_ASSOC);
@@ -658,7 +727,7 @@ class DB
 
 
 $db = new DB($con);
-$db->validateUserRoom(200); 
+$db->getUserOrderToAll('total_order','users','2023-01-15'); 
 //$id=$db->index('users');
 // $db->show('users',1);
 // $db->store('users' , ['name'=>'ahmed','email'=>'ahmed@gmail.com', 'password'=>'12345678', 'profile_pic'=>'./images/0.12204800 1672674506.jpeg']);

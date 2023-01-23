@@ -58,6 +58,9 @@ function createTable(element) {
     let selectBox = document.createElement("select");
     selectBox.classList.add("form-select", "text-black");
     action.appendChild(selectBox);
+    selectBox.addEventListener("click", (e)=>{
+        e.stopPropagation();
+    })
 
     let option = document.createElement("option");
     option.innerHTML = "Change Status";
