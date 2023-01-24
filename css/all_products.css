@@ -39,6 +39,14 @@ a{
   border: transparent;
   padding: 7px 15px;
 }
+.addUser a{
+color: white;
+}
+/* .btn .addUser:hover{
+background-color:#CA8E46 ;
+color: white;
+border: transparent;
+} */
 .editBtn,
 .submit {
   background-color: #ca8e46;
