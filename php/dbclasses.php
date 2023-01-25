@@ -7,74 +7,71 @@ class DB
     public function __construct($con)
     {
         $this->con = $con;
-
     }
-   
-     // get all users
-     public function index($tableName)
-     {
-         try{
-             $query = "SELECT * FROM $tableName";
-             $sql = $this->con->prepare($query);
-             $sql->execute();
-             $data = $sql->fetchAll(PDO::FETCH_ASSOC);
-             return $data;
-         }catch (PDOException $e) {
-             echo "Error: ".$e->getMessage();
-         }
-         
-     }
-     public function index1($tableName)
-     {
-         try{
-             $query = "SELECT * FROM $tableName where is_admin = 0";
-             $sql = $this->con->prepare($query);
-             $sql->execute();
-             $data = $sql->fetchAll(PDO::FETCH_ASSOC);
-             return $data;
-         }catch (PDOException $e) {
-             echo "Error: ".$e->getMessage();
-         }
-         
-     }
-    // get users room 
-    public function usersroom($tableName1,$tableName2,$index)
+
+    // get all users
+    public function index($tableName)
     {
-        try{
+        try {
+            $query = "SELECT * FROM $tableName";
+            $sql = $this->con->prepare($query);
+            $sql->execute();
+            $data = $sql->fetchAll(PDO::FETCH_ASSOC);
+            return $data;
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
+    public function index1($tableName)
+    {
+        try {
+            $query = "SELECT * FROM $tableName where is_admin = 0";
+            $sql = $this->con->prepare($query);
+            $sql->execute();
+            $data = $sql->fetchAll(PDO::FETCH_ASSOC);
+            return $data;
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
+    // get users room 
+    public function usersroom($tableName1, $tableName2, $index)
+    {
+        try {
             // $query = "SELECT * FROM $tableName1 INNER JOIN $tableName2 on $tableName1.id =$tableName2.user_id LIMIT $index,4";
             $query = "SELECT $tableName2.*, $tableName1.*   FROM $tableName1, $tableName2 where $tableName1.id = $tableName2.user_id LIMIT $index,4";
             $sql = $this->con->prepare($query);
             $sql->execute();
             $data = $sql->fetchAll(PDO::FETCH_ASSOC);
             return $data;
-        }catch (PDOException $e) {
-            echo "Error: ".$e->getMessage();
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
         }
     }
-    
-      
+
+
     // get single user by id
     public function show($tableName, $id)
     {
-        try{
+        try {
             $query = "SELECT * FROM $tableName where id = $id";
             $sql = $this->con->prepare($query);
             $sql->execute();
             $data = $sql->fetch(PDO::FETCH_ASSOC);
             return $data;
-        }catch (PDOException $e) {
-            echo "Error: ".$e->getMessage();
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
         }
         $query = "SELECT * FROM $tableName where id = $id";
         $sql = $this->con->prepare($query);
         $sql->execute();
         $data = $sql->fetch(PDO::FETCH_ASSOC);
-        
+
         return $data;
     }
-   
 
-   
+
+
 
     public function update($tableName, $id, $data)
     {
@@ -88,59 +85,59 @@ class DB
         $sql->execute();
     }
     // update user
-    public function updateUser($tableName,$tableRoom,$id,$name,$email,$room,$img)
+    public function updateUser($tableName, $tableRoom, $id, $name, $email, $room, $img)
     {
-        try{
-            $query="UPDATE $tableName SET name='$name', email='$email',profile_pic='$img' WHERE id=$id";
-            $queryRoom="UPDATE $tableRoom SET Room_number = $room WHERE user_id=$id";
-            $sql=$this->con->prepare($query);
+        try {
+            $query = "UPDATE $tableName SET name='$name', email='$email',profile_pic='$img' WHERE id=$id";
+            $queryRoom = "UPDATE $tableRoom SET Room_number = $room WHERE user_id=$id";
+            $sql = $this->con->prepare($query);
             $sql->execute();
-            $sql2=$this->con->prepare($queryRoom);
-            $sql2->execute();   
-        }catch (PDOException $e) {
-            echo "Error: ".$e->getMessage();
+            $sql2 = $this->con->prepare($queryRoom);
+            $sql2->execute();
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
         }
     }
 
-    public function updateUserExceptRoom($tableName,$id,$name,$email,$img)
+    public function updateUserExceptRoom($tableName, $id, $name, $email, $img)
     {
-        try{
-            $query="UPDATE $tableName SET name='$name', email='$email',profile_pic='$img' WHERE id=$id";
+        try {
+            $query = "UPDATE $tableName SET name='$name', email='$email',profile_pic='$img' WHERE id=$id";
             // $queryRoom="UPDATE $tableRoom SET Room_number = $room WHERE user_id=$id";
-            $sql=$this->con->prepare($query);
+            $sql = $this->con->prepare($query);
             $sql->execute();
             // $sql2=$this->con->prepare($queryRoom);
             // $sql2->execute();   
-        }catch (PDOException $e) {
-            echo "Error: ".$e->getMessage();
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
         }
     }
 
-    public function updateUserExceptEmail($tableName,$tableRoom,$id,$name,$room,$img)
+    public function updateUserExceptEmail($tableName, $tableRoom, $id, $name, $room, $img)
     {
-        try{
-            $query="UPDATE $tableName SET name='$name', profile_pic='$img' WHERE id=$id";
-            $queryRoom="UPDATE $tableRoom SET Room_number = $room WHERE user_id=$id";
-            $sql=$this->con->prepare($query);
+        try {
+            $query = "UPDATE $tableName SET name='$name', profile_pic='$img' WHERE id=$id";
+            $queryRoom = "UPDATE $tableRoom SET Room_number = $room WHERE user_id=$id";
+            $sql = $this->con->prepare($query);
             $sql->execute();
-            $sql2=$this->con->prepare($queryRoom);
-            $sql2->execute();   
-        }catch (PDOException $e) {
-            echo "Error: ".$e->getMessage();
+            $sql2 = $this->con->prepare($queryRoom);
+            $sql2->execute();
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
         }
     }
 
-    public function updateUserExceptEmailRoom($tableName,$id,$name,$img)
+    public function updateUserExceptEmailRoom($tableName, $id, $name, $img)
     {
-        try{
-            $query="UPDATE $tableName SET name='$name', profile_pic='$img' WHERE id=$id";
-            $sql=$this->con->prepare($query);
-            $sql->execute();  
-        }catch (PDOException $e) {
-            echo "Error: ".$e->getMessage();
+        try {
+            $query = "UPDATE $tableName SET name='$name', profile_pic='$img' WHERE id=$id";
+            $sql = $this->con->prepare($query);
+            $sql->execute();
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
         }
     }
-    
+
     // create user
     public function store($tableName, $data)
     {
@@ -148,7 +145,7 @@ class DB
             $query = "INSERT INTO " . $tableName . " (";
             $query .= implode(",", array_keys($data)) . ') VALUES (';
             $query .= "'" . implode("','", array_values($data)) . "')";
-            $query=rtrim($query,"'");
+            $query = rtrim($query, "'");
             $sql = $this->con->prepare($query);
             $sql->execute();
             return true;
@@ -165,25 +162,25 @@ class DB
     }
 
     //get all products
-    public function lisProducts($tableName){
+    public function lisProducts($tableName)
+    {
         $query = "SELECT * FROM $tableName ";
-        $sql=$this->con->prepare($query);
+        $sql = $this->con->prepare($query);
         $sql->execute();
         $data = $sql->fetchAll(PDO::FETCH_ASSOC);
         return $data;
-        
     }
 
-    public function allProducts($index){
+    public function allProducts($index)
+    {
         $query = "SELECT * FROM product limit $index,4";
-        $sql=$this->con->prepare($query);
+        $sql = $this->con->prepare($query);
         $sql->execute();
         $data = $sql->fetchAll(PDO::FETCH_ASSOC);
         return $data;
-        
     }
 
-    public function getOneProduct($tableName,$productName)
+    public function getOneProduct($tableName, $productName)
 
     {
         $query = "SELECT * FROM $tableName where name = '$productName'";
@@ -193,68 +190,67 @@ class DB
         return $data;
     }
 
-    public function validatproductName($productName){
+    public function validatproductName($productName)
+    {
 
-        $result=$this->getOneProduct('product',$productName);
-        if (gettype($result)=='array'){
+        $result = $this->getOneProduct('product', $productName);
+        if (gettype($result) == 'array') {
             return false;
         }
-        
+
         return true;
     }
 
-    public function deleteProduct($id){
-         
-         $query="UPDATE product set status ='Not available' where id ='$id'" ;
-            $sql = $this->con->prepare($query);
-            $result=$sql->execute();
-            return $result;
-    }
-        //to do
-    public function udateproductData($id,$name,$price,$pic,$status,$categoryId){
+    public function deleteProduct($id)
+    {
 
-    
-        $query="UPDATE product SET name='$name',price=$price,product_pic='$pic',status='$status',category_id=$categoryId
+        $query = "UPDATE product set status ='Not available' where id ='$id'";
+        $sql = $this->con->prepare($query);
+        $result = $sql->execute();
+        return $result;
+    }
+    //to do
+    public function udateproductData($id, $name, $price, $pic, $status, $categoryId)
+    {
+
+
+        $query = "UPDATE product SET name='$name',price=$price,product_pic='$pic',status='$status',category_id=$categoryId
          WHERE id=$id";
-        $sql=$this->con->prepare($query);
-        $r=$sql->execute();
-
-    
-        
+        $sql = $this->con->prepare($query);
+        $r = $sql->execute();
     }
-    public function updateProuductEpxeptName($id,$price,$pic,$status,$categoryId){
+    public function updateProuductEpxeptName($id, $price, $pic, $status, $categoryId)
+    {
 
-        $query="UPDATE product SET price=$price,product_pic='$pic',status='$status',category_id=$categoryId
+        $query = "UPDATE product SET price=$price,product_pic='$pic',status='$status',category_id=$categoryId
         WHERE id=$id";
-       $sql=$this->con->prepare($query);
-       $r=$sql->execute();
-       
-   
+        $sql = $this->con->prepare($query);
+        $r = $sql->execute();
     }
-   
-    
 
-    public function addProduct($name,$price,$pic,$cat_id){
-        $query="INSERT INTO product (name ,price,product_pic,category_id) VALUES('$name',$price,'$pic',$cat_id)"; 
-        $sql=$this->con->prepare($query);
+
+
+    public function addProduct($name, $price, $pic, $cat_id)
+    {
+        $query = "INSERT INTO product (name ,price,product_pic,category_id) VALUES('$name',$price,'$pic',$cat_id)";
+        $sql = $this->con->prepare($query);
         $sql->execute();
-        
-    }    
+    }
 
-    public function getproductId($productName){
+    public function getproductId($productName)
+    {
         $query = "SELECT id FROM product where name = '$productName'";
         $sql = $this->con->prepare($query);
         $sql->execute();
         $data = $sql->fetch(PDO::FETCH_ASSOC);
-        return $data;       
+        return $data;
     }
 
- // catagory validate
+    // catagory validate
 
     public function getOneCatagory($catagoryName)
     {
         $query = "SELECT * FROM category where name = '$catagoryName'";
-
     }
 
     // get user id
@@ -273,11 +269,11 @@ class DB
         $sql = $this->con->prepare($query);
         $sql->execute();
         $data = $sql->fetch(PDO::FETCH_ASSOC);
-        
+
         return $data;
     }
 
-   
+
     // get user password
     public function getUserpw($tableName, $email)
     {
@@ -289,126 +285,127 @@ class DB
         return $data;
     }
 
-    public function validatecatagoryName($catagoryName){
+    public function validatecatagoryName($catagoryName)
+    {
 
-        $result=$this->getOneCatagory($catagoryName);
-        if (gettype($result)=='array'){
+        $result = $this->getOneCatagory($catagoryName);
+        if (gettype($result) == 'array') {
             return false;
         }
-        
+
         return true;
     }
 
 
-    public function addCategory($catagoryName){
-        $query="INSERT INTO category(name)VALUES('$catagoryName')";
-        $sql=$this->con->prepare($query);
-        $sql->execute(); 
-        return true;       
-
-    
+    public function addCategory($catagoryName)
+    {
+        $query = "INSERT INTO category(name)VALUES('$catagoryName')";
+        $sql = $this->con->prepare($query);
+        $sql->execute();
+        return true;
     }
 
 
- // $oldName=$db->getOneProduct('product','t');
- // var_dump($oldName);
- // $db->addProduct('tea',33,'',3);
- // $db->udateproductDAta('t',2,'',2);
- //$db->lisProducts('product');
- // $db->index('users');
+    // $oldName=$db->getOneProduct('product','t');
+    // var_dump($oldName);
+    // $db->addProduct('tea',33,'',3);
+    // $db->udateproductDAta('t',2,'',2);
+    //$db->lisProducts('product');
+    // $db->index('users');
 
     //get users from total_orders
-    public function users_name($tableName1,$tableName2){
-        $query="SELECT name FROM $tableName1,$tableName2 WHERE $tableName1.id=$tableName2.user_id";
+    public function users_name($tableName1, $tableName2)
+    {
+        $query = "SELECT name FROM $tableName1,$tableName2 WHERE $tableName1.id=$tableName2.user_id";
         $sql = $this->con->prepare($query);
         $sql->execute();
         $data = $sql->fetch(PDO::FETCH_ASSOC);
         return $data;
     }
-   
+
 
 
     // get products for home page
     public function getProducts($tableName)
     {
-        try{
-            $query = "SELECT product.name,price,product_pic,product.id FROM `product` , `category` WHERE product.category_id=category.id ORDER BY category_id;";
+        try {
+            $query = "SELECT product.name,price,product_pic,product.id FROM `product` , `category` WHERE product.category_id=category.id AND product.status='Available' ORDER BY category_id;";
             $sql = $this->con->prepare($query);
             $sql->execute();
             $data = $sql->fetchAll(PDO::FETCH_ASSOC);
             return $data;
             // $sql2=$this->con->prepare($queryRoom);
             // $sql2->execute();   
-        }catch (PDOException $e) {
-            echo "Error: ".$e->getMessage();
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
         }
     }
     // validate form
-    public function validateUser($id,$email,$room)
+    public function validateUser($id, $email, $room)
     {
-        try{
+        try {
             // SELECT * FROM $tableName1 INNER JOIN $tableName2 on $tableName1.id =$tableName2.user_id
             $query = "SELECT email,Room_number FROM users INNER JOIN user_room on  email='$email' and Room_number =$room ";
             // $query="SELECT email, Room_number from users , user_room where users.id = user_room.user_id and   email = '$email' and Room_number = $room";
             $sql = $this->con->prepare($query);
             $sql->execute();
             $data = $sql->fetchAll(PDO::FETCH_ASSOC);
-            
-            return $data;   
-        }catch (PDOException $e) {
-            echo "Error: ".$e->getMessage();
+
+            return $data;
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
         }
     }
 
     public function validateUserRoom($room)
     {
-        try{
+        try {
             $query = "SELECT Room_number FROM user_room where Room_number =$room";
             $sql = $this->con->prepare($query);
             $sql->execute();
             $data = $sql->fetchAll(PDO::FETCH_ASSOC);
             // var_dump($data);    
-            return $data;   
-        }catch (PDOException $e) {
-            echo "Error: ".$e->getMessage();
+            return $data;
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
         }
     }
 
     public function validateUserEmail($email)
     {
-        try{
+        try {
             // SELECT * FROM $tableName1 INNER JOIN $tableName2 on $tableName1.id =$tableName2.user_id
             $query = "SELECT email FROM users where  email='$email'";
             // $query="SELECT email, Room_number from users , user_room where users.id = user_room.user_id and   email = '$email' and Room_number = $room";
             $sql = $this->con->prepare($query);
             $sql->execute();
             $data = $sql->fetchAll(PDO::FETCH_ASSOC);
-            
-            return $data;   
-        }catch (PDOException $e) {
-            echo "Error: ".$e->getMessage();
+
+            return $data;
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
         }
     }
 
 
     //search in home page
-    public function paginationSearch($tableName,$word)
+    public function paginationSearch($tableName, $word)
     {
-        try{
+        try {
             $query = "SELECT name,price,product_pic FROM `product` where name like '%$word%';";
             $sql = $this->con->prepare($query);
             $sql->execute();
             $data = $sql->fetchAll(PDO::FETCH_ASSOC);
             return $data;
-        }catch (PDOException $e) {
-            echo "Error: ".$e->getMessage();
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
         }
     }
 
     //get latest order
-     public function getLatestOrder($id)
-     {
-        try{
+    public function getLatestOrder($id)
+    {
+        try {
             $query = "SELECT * FROM product where id=any(
                 SELECT product_id FROM order_product where order_id=(
                 SELECT id FROM total_order where user_id=$id ORDER BY created_at DESC LIMIT 1));;";
@@ -416,32 +413,30 @@ class DB
             $sql->execute();
             $data = $sql->fetchAll(PDO::FETCH_ASSOC);
             return $data;
-        }catch (PDOException $e) {
-            echo "Error: ".$e->getMessage();
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
         }
-     }
+    }
 
 
 
-     public function submitOrder($orderArr, $user_id, $room_number, $notes, $orderArrlength)
-     {
- 
-         try {
-             $q = json_encode($orderArr);
-             
-             $query = "call test('$q',$user_id,$room_number,'$notes',$orderArrlength)";
-             $sql = $this->con->query($query);
-             $result = $sql->fetch(PDO::FETCH_ASSOC);
-             
- 
-         } catch (PDOException $e) {
-             echo "Error: " . $e->getMessage();
-         }
-     }
+    public function submitOrder($orderArr, $user_id, $room_number, $notes, $orderArrlength)
+    {
+
+        try {
+            $q = json_encode($orderArr);
+
+            $query = "call test('$q',$user_id,$room_number,'$notes',$orderArrlength)";
+            $sql = $this->con->query($query);
+            $result = $sql->fetch(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
 
 
 
-         // checks
+    // checks
     // get users who made orders and done
     public function getUserOrder($tableOrder, $tableUsers)
     {
@@ -460,7 +455,7 @@ class DB
     public function getSingleUserTotalPrice($tableUsers, $tableOrder, $user_id)
     {
         try {
-            $query = "SELECT $tableUsers.*, sum(total_price) as total_price FROM $tableOrder, $tableUsers WHERE user_id = $user_id AND user_id = users.id AND status = 'Done' GROUP BY(user_id)";
+            $query = "SELECT $tableUsers.*, sum(total_price) as total_price FROM $tableOrder, $tableUsers WHERE user_id = $user_id AND user_id = users.id AND status = 'Done' GROUP BY(user_id) ORDER BY $tableOrder.created_at";
             $sql = $this->con->prepare($query);
             $sql->execute();
             $data = $sql->fetch(PDO::FETCH_ASSOC);
@@ -583,7 +578,7 @@ class DB
     public function showUserOrder($tableName, $id)
     {
         try {
-            $query = "SELECT * FROM $tableName where user_id = $id and status = 'Done'";
+            $query = "SELECT * FROM $tableName where user_id = $id and status = 'Done' ORDER BY created_at desc";
             $sql = $this->con->prepare($query);
             $sql->execute();
             $data = $sql->fetchAll(PDO::FETCH_ASSOC);
@@ -594,10 +589,10 @@ class DB
     }
 
     // get single user orders by user_id and done from to
-    public function getOrderFromToAll($tableOrder, $from, $to,$id)
+    public function getOrderFromToAll($tableOrder, $from, $to, $id)
     {
         try {
-            $query = "SELECT DISTINCT $tableOrder.* FROM $tableOrder WHERE user_id = $id AND status = 'Done' AND DATE($tableOrder.created_at) BETWEEN '$from' AND '$to'";
+            $query = "SELECT DISTINCT $tableOrder.* FROM $tableOrder WHERE user_id = $id AND status = 'Done' AND DATE($tableOrder.created_at) BETWEEN '$from' AND '$to' ORDER BY created_at desc";
             $sql = $this->con->prepare($query);
             $sql->execute();
             $data = $sql->fetchAll(PDO::FETCH_ASSOC);
@@ -611,7 +606,7 @@ class DB
     public function getOrderFromAll($tableOrder, $from, $id)
     {
         try {
-            $query = "SELECT DISTINCT $tableOrder.* FROM $tableOrder WHERE user_id = $id AND status = 'Done' AND DATE($tableOrder.created_at) BETWEEN '$from' AND DATE(now())";
+            $query = "SELECT DISTINCT $tableOrder.* FROM $tableOrder WHERE user_id = $id AND status = 'Done' AND DATE($tableOrder.created_at) BETWEEN '$from' AND DATE(now()) ORDER BY created_at desc";
             $sql = $this->con->prepare($query);
             $sql->execute();
             $data = $sql->fetchAll(PDO::FETCH_ASSOC);
@@ -621,11 +616,11 @@ class DB
         }
     }
 
-    // get single user orders by user_id and done from
+    // get single user orders by user_id and done to
     public function getOrderToAll($tableOrder, $to, $id)
     {
         try {
-            $query = "SELECT DISTINCT $tableOrder.* FROM $tableOrder WHERE user_id = $id AND status = 'Done' AND DATE($tableOrder.created_at) <= '$to'";
+            $query = "SELECT DISTINCT $tableOrder.* FROM $tableOrder WHERE user_id = $id AND status = 'Done' AND DATE($tableOrder.created_at) <= '$to' ORDER BY created_at";
             $sql = $this->con->prepare($query);
             $sql->execute();
             $data = $sql->fetchAll(PDO::FETCH_ASSOC);
@@ -685,7 +680,7 @@ class DB
     }
     // public function room_number($tableName1,$tableName2)
     // {
-        
+
     //     $query = "SELECT Room_number FROM $tableName1,$tableName2 WHERE $tableName1.user_id=$tableName2.user_id";
     //     $sql = $this->con->prepare($query);
     //     $sql->execute();
@@ -720,14 +715,11 @@ class DB
         $data = $sql->fetchAll(PDO::FETCH_ASSOC);
         return $data;
     }
-    
-    
-    
 }
 
 
 $db = new DB($con);
-$db->getUserOrderToAll('total_order','users','2023-01-15'); 
+$db->getUserOrderToAll('total_order', 'users', '2023-01-15'); 
 //$id=$db->index('users');
 // $db->show('users',1);
 // $db->store('users' , ['name'=>'ahmed','email'=>'ahmed@gmail.com', 'password'=>'12345678', 'profile_pic'=>'./images/0.12204800 1672674506.jpeg']);
@@ -750,5 +742,3 @@ $db->getUserOrderToAll('total_order','users','2023-01-15');
 // print_r($data);
 // $data=$db->room_number('total_order','user_room');
 // print_r($data);
-
-
