@@ -14,7 +14,7 @@ let dateFormatFrom;
 let to = document.getElementById("to");
 let dateTo;
 let dateFormatTo;
-let flage=0;
+let flage = 0;
 
 //getuserorders () to return promise 
 async function getUserOrders() {
@@ -23,78 +23,65 @@ async function getUserOrders() {
   users = data;
   numberOfPages(data);
   page(1);
-  
+
 }
 
 function numberOfPages(data) {
 
   while (document.getElementById("pagination").firstChild) {
-      document.getElementById("pagination").firstChild.remove()
+    document.getElementById("pagination").firstChild.remove()
   }
 
-  console.log(data);
   let x = data.length / 4;
   let NumberOfPages = Math.ceil(x);
   for (let i = 1; i < NumberOfPages + 1; i++) {
-      let row = `<li class="page-item my-3"><a onclick=page(${i}) class="page-link bg-black " style="color:#fff;">${i}</a></li>`;
-      document.getElementById("pagination").innerHTML += row;
+    let row = `<li class="page-item my-3"><a onclick=page(${i}) class="page-link bg-black " style="color:#fff;">${i}</a></li>`;
+    document.getElementById("pagination").innerHTML += row;
   }
 }
 
-function page(x)
-{
-  console.log(x);
-    let index=x;
-    let start=(index-1)*4;
-    let end=(index*4);
-    let numberOfElementsToDelete=document.getElementById("table-data");
-    while(numberOfElementsToDelete.firstChild)
-    {
-        numberOfElementsToDelete.firstChild.remove();
-    }
+function page(x) {
+  let index = x;
+  let start = (index - 1) * 4;
+  let end = (index * 4);
+  let numberOfElementsToDelete = document.getElementById("table-data");
+  while (numberOfElementsToDelete.firstChild) {
+    numberOfElementsToDelete.firstChild.remove();
+  }
 
-    if(flage==1 && dateFormatFrom.match(rejexDate) && dateFormatTo.match(rejexDate)){
-      let startDate = dateFormatFrom + " 00:00:00";
-      let endDate = dateFormatTo + " 00:00:00";
-      let tableData = [];
+  if (flage == 1 && dateFormatFrom && dateFormatFrom.match(rejexDate) && dateFormatTo && dateFormatTo.match(rejexDate)) {
+    let startDate = dateFormatFrom + " 00:00:00";
+    let endDate = dateFormatTo + " 00:00:00";
+    let tableData = [];
 
-      users.forEach((user) => {
-        console.log(user);
-        if (user.created_at >= startDate && user.created_at <= endDate) {
-          tableData.push(user);
-          // createPagination();
-        }
-      });
-      console.log(tableData);
-      numberOfPages(tableData);
-        for(let k=start;k<end;k++)
-      {
-        if(k==tableData.length)
-        {
-          return;
-        }
-        userOrderTable(tableData[k]);
+    users.forEach((user) => {
+      if (user.created_at >= startDate && user.created_at <= endDate) {
+        tableData.push(user);
       }
-    }else{
-      for(let k=start;k<end;k++)
-      {
-        if(k==users.length)
-        {
-          return;
-        }
-        userOrderTable(users[k]);
+    });
+    numberOfPages(tableData);
+    for (let k = start; k < end; k++) {
+      if (k == tableData.length) {
+        createAction();
+        return;
       }
+      userOrderTable(tableData[k]);
     }
-    createAction();
+    
+  } else {
+    for (let k = start; k < end; k++) {
+      if (k == users.length) {
+        return;
+      }
+      userOrderTable(users[k]);
+    }
+  }
+  createAction();
 }
-
 
 var indexoforder = 1;
 
-
 function displayUserOrders() {
-
-
   let startDate = document.getElementById("start").value + " 00:00:00";
   let endDate = document.getElementById("end").value + " 00:00:00";
   let tableData = "";
@@ -105,16 +92,10 @@ function displayUserOrders() {
       // createPagination();
     }
   });
-  console,log(tableData);
   document.querySelector("#table-data").innerHTML = tableData;
-
 }
 
-
-
-
 var userindex = 0;
-
 
 function userOrderTable(element) {
   let actionButton = '';
@@ -140,13 +121,13 @@ function userOrderTable(element) {
     hours = hours ? hours : 12;
     minutes = minutes < 10 ? minutes : minutes;
     if (hours >= 10) {
-        strTime = hours + ':' + minutes + ' ' + ampm;
+      strTime = hours + ':' + minutes + ' ' + ampm;
     } else {
-        strTime = '0' + hours + ':' + minutes + ' ' + ampm;
+      strTime = '0' + hours + ':' + minutes + ' ' + ampm;
     }
-}else{
+  } else {
     strTime = date[3] + ":" + date[4] + " " + ampm;
-}
+  }
   orderDate.innerHTML = date[0] + '-' + date[1] + '-' + date[2] + "  " + strTime;
 
   let status = document.createElement("td");
@@ -256,20 +237,7 @@ function createAction() {
   });
 }
 
-function onclicksubmit(event) {
-  event.preventDefault();
-  displayUserOrders()
-
-}
-
-
-
 ///////////////////////////////////////img////////////////////////////////////
-
-
-
-
-
 
 async function getOrderDetails(order_id) {
   let user = { id: order_id }
@@ -284,43 +252,36 @@ async function getOrderDetails(order_id) {
 }
 ////////////cancel order////////////
 
-
 async function cancelOrder(order_id) {
   let user = { id: order_id }
-  let result= await fetch('./php/cancelOrder.php', {
+  let result = await fetch('./php/cancelOrder.php', {
     method: 'POST',
     body: JSON.stringify(user),
   })
-  let data=await result.json();
+  let data = await result.json();
   location.reload();
-  
 }
 
-
 from.addEventListener("focusout", function (e) {
-    dateFrom = e.target.value;
-    let arr = dateFrom.split("/");
-    dateFormatFrom = arr[2] + "-" + arr[1] + "-" + arr[0];
-    console.log(dateFormatFrom);
-    flage=1;
-    
-    if(flage==1 && dateFormatFrom.match(rejexDate) && dateFormatTo.match(rejexDate)){
-      
-      page(1);}
+  dateFrom = e.target.value;
+  let arr = dateFrom.split("/");
+  dateFormatFrom = arr[2] + "-" + arr[1] + "-" + arr[0];
+  flage = 1;
+
+  if (flage == 1 && dateFormatFrom && dateFormatFrom.match(rejexDate) && dateFormatTo && dateFormatTo.match(rejexDate)) {
+    page(1);
+  }
 });
 
 
 
 to.addEventListener("focusout", function (e) {
-    dateTo = e.target.value;
-    let arr = dateTo.split("/");
-    dateFormatTo = arr[2] + "-" + arr[1] + "-" + arr[0];
-    console.log(dateFormatTo);
-    
-    if(flage==1 && dateFormatFrom.match(rejexDate) && dateFormatTo.match(rejexDate)){
-      
-      page(1);
-      
-    }
+  dateTo = e.target.value;
+  let arr = dateTo.split("/");
+  dateFormatTo = arr[2] + "-" + arr[1] + "-" + arr[0];
+
+  if (flage == 1 && dateFormatFrom && dateFormatFrom.match(rejexDate) && dateFormatTo && dateFormatTo.match(rejexDate)) {
+    page(1);
+  }
 });
 

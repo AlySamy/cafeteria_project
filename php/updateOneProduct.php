@@ -6,8 +6,7 @@ $productprice=$_REQUEST['price'];
 $productStatus=$_REQUEST['status'];
 $productId=$_REQUEST['id'];
 $catagoryId=$_REQUEST['category'];
-$categoryPic=$_REQUEST['img'];
-
+$categoryPic=$_FILES['realImg'];
 
 
 
@@ -29,28 +28,29 @@ setcookie('errors','', -1, '/');
 }
 
 
-// $imgSize = $categoryPic['size'];
-// if ($imgSize > 2000000) {
-//     setcookie('errors', json_encode(['image' => 'size of image bigger than 2MG']),0,'/');
-//     header("location:../all_product.html");
-//     exit();
-// } else {
-//     setcookie('errors','', -1, '/');
-// }
+$imgSize = $categoryPic['size'];
+if ($imgSize > 2000000) {
+    setcookie('errors', json_encode(['image' => 'size of image bigger than 2MG']),0,'/');
+    header("location:../all_product.html");
+    exit();
+} else {
+    setcookie('errors','', -1, '/');
+}
 
-// $allowed_image_extension = array('png', 'jpg', 'jpeg');
-// $imgExtension = explode('/', $categoryPic['type'])[1];
-// if (!in_array($imgExtension, $allowed_image_extension)) {
-//     setcookie("errors", json_encode(['image' => 'extension image is not valid']),0,'/');
-//     header("location:../all_product.html");
-//     exit();
-// } else {
-//     setcookie('errors','', -1, '/');
-// }
-//  $categoryPic=$_FILES['img'];
-// $file_path = $categoryPic['tmp_name'];
-// $categoryPic = '../images/products/' . time() . '.' . explode('/', mime_content_type($file_path))[1];
-// move_uploaded_file($file_path, $categoryPic);
+$allowed_image_extension = array('png', 'jpg', 'jpeg');
+$imgExtension = explode('/', $categoryPic['type'])[1];
+if (!in_array($imgExtension, $allowed_image_extension)) {
+    setcookie("errors", json_encode(['image' => 'extension image is not valid']),0,'/');
+    header("location:../all_product.html");
+    exit();
+} else {
+    setcookie('errors','', -1, '/');
+}
+ $categoryPic=$_FILES['realImg'];
+$file_path = $categoryPic['tmp_name'];
+$categoryPic = '../images/products/' . time() . '.' . explode('/', mime_content_type($file_path))[1];
+move_uploaded_file($file_path, $categoryPic);
+
 
 // $catagorypicuplode= time() . '.' . $imgExtension;
 

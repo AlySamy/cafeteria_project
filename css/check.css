@@ -1,8 +1,9 @@
 /* checks page */
-/* .navbar .navbar-collapse .active{
-    color: #CA8E46;
-  } */
-  .pagination-div li
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Mrs+Saint+Delafield&display=swap");
+*{
+  font-family: "Montserrat";
+}  
+.pagination-div li
   {
       margin: 10px;
       cursor: pointer;

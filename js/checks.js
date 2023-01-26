@@ -3,7 +3,7 @@ getUserData();
 let allDataUsers = [];
 let allData = [];
 
-// get user data -- post
+// get user data
 async function getUserData() {
     let result = await fetch("php/getUserOrderDone.php");
     let data = await result.json();
@@ -74,24 +74,63 @@ async function getUserDataIndex(index) {
         });
         allData = await resAll.json();
         numberOfPages(allData);
-        console.log(allData)
-    }
-    //  else if (dateFormatFrom && dateFormatFrom.match(rejexDate)) {
-    //     let res = await fetch("php/filterDateFromChecks.php", {
-    //         method: "post",
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //         },
-    //         body: JSON.stringify({
-    //             "from": dateFormatFrom,
-    //             "index": index,
-    //         })
+    } else if (dateFormatFrom && dateFormatFrom.match(rejexDate)) {
+        let res = await fetch("php/filterDateFromChecks.php", {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                "from": dateFormatFrom,
+                "index": index,
+            })
 
-    //     });
-    //     data = await res.json();
-    //     console.log("from")
-    // } 
-    else {
+        });
+        data = await res.json();
+        console.log("from")
+        // get all data from to
+        let resAll = await fetch("php/getUserOrderFromAll.php", {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                "from": dateFormatFrom,
+                "index": index,
+            })
+        });
+        allData = await resAll.json();
+        numberOfPages(allData);
+        console.log(allData)
+    } else if (dateFormatTo && dateFormatTo.match(rejexDate)) {
+        let res = await fetch("php/filterDateToChecks.php", {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                "to": dateFormatTo,
+                "index": index,
+            })
+
+        });
+        data = await res.json();
+        console.log("from")
+        // get all data from to
+        let resAll = await fetch("php/getUserOrderToAll.php", {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                "to": dateFormatTo,
+                "index": index,
+            })
+        });
+        allData = await resAll.json();
+        numberOfPages(allData);
+        console.log(allData)
+    } else {
         let res = await fetch("php/getUserTotalPriceIndex.php", {
             method: "post",
             headers: {
@@ -120,7 +159,7 @@ async function getUserDataIndex(index) {
 }
 getUserDataIndex(1);
 
-// get single user for filter user ------ post
+// get single user for filter user
 async function getSingleUserData(user_id) {
     let res = await fetch("php/getSingleUserTotalPrice.php", {
         method: "post",
@@ -142,7 +181,7 @@ async function getSingleUserData(user_id) {
     createAction();
 }
 
-// create filter users  ---
+// create filter users
 function createOptions(data) {
     data.forEach((element) => {
         let selected = document.querySelector("select");
@@ -153,7 +192,7 @@ function createOptions(data) {
     })
 }
 
-// number of pages pagination  ----
+// number of pages pagination
 function numberOfPages(data) {
 
     while (document.getElementById("pagination").firstChild) {
@@ -169,7 +208,7 @@ function numberOfPages(data) {
     }
 }
 
-// create table users -----
+// create table users
 function createTable(element) {
 
     let plus = document.createElement("tr");
@@ -224,7 +263,7 @@ function createTable(element) {
 
 }
 
-// create table orders ------
+// create table orders
 function createOrdersUser(divTable, user_id) {
     const userOrders = async () => {
         let newTable = document.createElement("table");
@@ -251,6 +290,10 @@ function createOrdersUser(divTable, user_id) {
         let userOrder;
         if (dateFormatFrom && dateFormatFrom.match(rejexDate) && dateFormatTo && dateFormatTo.match(rejexDate)) {
             userOrder = await getUserordesFilter(user_id,dateFormatFrom,dateFormatTo);
+        } else if(dateFormatFrom && dateFormatFrom.match(rejexDate)){
+            userOrder = await getUserordesFilterFrom(user_id,dateFormatFrom);
+        } else if(dateFormatTo && dateFormatTo.match(rejexDate)){
+            userOrder = await getUserordesFilterTo(user_id,dateFormatTo);
         } else {
             userOrder = await getUserordes(user_id);
         }
@@ -268,7 +311,7 @@ function createOrdersUser(divTable, user_id) {
     userOrders();
 }
 
-// create order row ------
+// create order row
 function createRowOrdersTime(newTbody, item) {
     let newOrdertr = document.createElement("tr");
     newOrdertr.classList.add("view-order");
@@ -368,7 +411,7 @@ function createRowOrdersTime(newTbody, item) {
 
 }
 
-// create user action button -----
+// create user action button
 function createAction() {
     let action = document.querySelectorAll(".fold-table tr.view")
     for (let i = 0; i < action.length; i++) {
@@ -384,7 +427,7 @@ function createAction() {
 
 }
 
-// create order action button -------
+// create order action button
 function createActionOrder() {
     let action2 = document.querySelectorAll(".fold-table .fold-table-order tr.view-order")
     for (let i = 0; i < action2.length; i++) {
@@ -399,7 +442,7 @@ function createActionOrder() {
     }
 }
 
-// get users Orders    -   post
+// get users Orders
 async function getUserordes(id) {
     let res = await fetch("php/getSingleUserOrder.php", {
         method: "post",
@@ -415,7 +458,7 @@ async function getUserordes(id) {
     return data;
 }
 
-// get users Orders filter    -   post
+// get users Orders filter
 async function getUserordesFilter(id, from, to) {
     let res = await fetch("php/getOrdersFromTo.php", {
         method: "post",
@@ -433,7 +476,41 @@ async function getUserordesFilter(id, from, to) {
     return data;
 }
 
-// get order details ----- post
+// get users Orders filter from
+async function getUserordesFilterFrom(id, from) {
+    let res = await fetch("php/getOrdersFrom.php", {
+        method: "post",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            "user_id": id,
+            "from": from
+        })
+
+    });
+    let data = await res.json();
+    return data;
+}
+
+// get users Orders filter to
+async function getUserordesFilterTo(id, to) {
+    let res = await fetch("php/getOrdersTo.php", {
+        method: "post",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            "user_id": id,
+            "to": to
+        })
+
+    });
+    let data = await res.json();
+    return data;
+}
+
+// get order details
 async function getordeDetails(id) {
     let res = await fetch("php/getOrderDetailsChecks.php", {
         method: "post",
@@ -449,7 +526,7 @@ async function getordeDetails(id) {
     return data;
 }
 
-// get Product Details ------ post
+// get Product Details
 async function getProductDetails(id) {
     let res = await fetch("php/productOrderDetailsChecks.php", {
         method: "post",
