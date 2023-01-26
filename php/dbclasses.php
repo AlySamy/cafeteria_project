@@ -719,7 +719,7 @@ class DB
 
 
 $db = new DB($con);
-$db->getUserOrderToAll('total_order', 'users', '2023-01-15'); 
+// $db->getUserOrderToAll('total_order', 'users', '2023-01-15'); 
 //$id=$db->index('users');
 // $db->show('users',1);
 // $db->store('users' , ['name'=>'ahmed','email'=>'ahmed@gmail.com', 'password'=>'12345678', 'profile_pic'=>'./images/0.12204800 1672674506.jpeg']);
