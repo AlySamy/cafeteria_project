@@ -127,9 +127,9 @@ function createProduct(object)
     let price=document.createElement("span");
 
     div1.setAttribute("id","cart-div");
-    div1.classList.add("product","my-3","col-3","rounded-4","bg-black");
+    div1.classList.add("product","my-3","col-10","col-sm-8","col-md-6","col-lg-4","col-xl-3","rounded-4","bg-black");
     div2.classList.add("card","rounded-4");
-    div2.style.width="18rem";
+    // div2.style.width="18rem";
     img.setAttribute("src","./images/products/"+object.product_pic);
     img.classList.add("card-img-top");
     div3.classList.add("card-body");
@@ -193,7 +193,7 @@ function createLatestProduct(object)
     div1.setAttribute("id","cart-div");
     div1.classList.add("col-md-5","my-3","rounded-4","bg-black");
     div2.classList.add("card","rounded-4");
-    div2.style.width="18rem";
+    // div2.style.width="18rem";
     img.setAttribute("src","./images/products/"+object.product_pic);
     img.classList.add("card-img-top");
     div3.classList.add("card-body");
@@ -262,7 +262,7 @@ function createSearchProduct(object)
     div1.setAttribute("id","cart-div");
     div1.classList.add("col-md-5","my-5","rounded-4","bg-black","search-product");
     div2.classList.add("card","rounded-4");
-    div2.style.width="18rem";
+    // div2.style.width="18rem";
     img.setAttribute("src","./images/products/"+object.product_pic);
     img.classList.add("card-img-top");
     div3.classList.add("card-body");

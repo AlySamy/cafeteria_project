@@ -16,6 +16,11 @@ a{
   grid-template-rows:auto 1fr auto ;
 
 }
+@media(max-width:570px){
+  .usertable .bg-white{
+    overflow-x: scroll;
+  }
+}
 /* .usertable {
   height: 100%;
 } */

@@ -8,13 +8,19 @@
 a{
   text-decoration: none !important;
 }
-.all_products{
+.all_users{
   min-height: 100vh;
   font-size: 18px;
   text-transform: capitalize;
   display: grid;
   grid-template-rows:auto 1fr auto ;
+  
 
+}
+@media(max-width:419px){
+  .usertable .bg-white{
+    width: 100vw !important;
+  }
 }
 /* .usertable {
   height: 100%;
