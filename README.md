@@ -27,14 +27,14 @@ run apache server . <br>
 `step 4 : ` <br>
 run the project at the same port apache server running <br> 
 `step 5 : ` <br>
-login with username:admin email & password to login to admin view you can add user account and login with it to user view
+login with Admin Email: "admin@admin.com" & Password: "123456789" to login to admin view you can add user account and login with it to user view
 
 ## Created by : 
-[Name](github email) <br>
-[name](github email) <br>
-[name](github email) <br>
-[name](github email) <br>
-[name](github email) <br>
-[name](github email) <br>
+[Aly Samy](alysamyrady@gmail.com) <br>
+[Alaa Nassar](alaanassar1211@gmail.com) <br>
+[Toqa Newir](tokanewer1234@gmail.com) <br>
+[Ahmed Fayz](ahmedhimida4321@gmail.com) <br>
+[Kareem Mohamed](Kareem.abouzait@gmail.com) <br>
+[Fouad Adel](Fouad.adel262@gmail.com) <br>
 
 ITI intake 43
