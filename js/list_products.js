@@ -7,14 +7,15 @@ async function getAllProducts() {
 }
 getAllProducts();
 
-async function manpulateResponse(index) {
+manpulateResponseData(1);
+async function manpulateResponseData(index) {
   let res = await fetch("./php/product_pagination.php", {
     method: "post",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      index: index,
+      'index': index,
     }),
   });
   let data = await res.json();
@@ -22,11 +23,13 @@ async function manpulateResponse(index) {
   while (fatherOfElementsToDelete.firstChild) {
     fatherOfElementsToDelete.firstChild.remove();
   }
+  console.log(data);
   data.forEach((obj) => {
+    console.log("hhh")
     createRow(obj);
   });
 }
-manpulateResponse(1);
+
 
 let tableBody = document.querySelector("tbody");
 function createRow(obj) {
@@ -60,7 +63,7 @@ function createRow(obj) {
     document.getElementsByName("name")[0].value = obj.name;
     document.getElementsByName("price")[0].value = obj.price;
     document.getElementsByName("status")[0].value = obj.status;
-    // document.getElementsByName("img")[0].src = `./images/products/${obj.product_pic}`;
+    document.getElementsByName("img")[0].value = obj.product_pic;
     // console.log((src = `./images/products/${obj.product_pic}`));
 
     document.getElementsByName("id")[0].value = obj.id;
@@ -69,6 +72,11 @@ function createRow(obj) {
 
   deleteImg.addEventListener("click", () => {
     deletProduct(obj.id);
+  });
+  let btnUpload=document.getElementById('button-upload');
+  btnUpload.addEventListener("change",(e)=>{
+  const file = e.target.files[0];
+  document.getElementsByName("img")[0].value = file?.name;
   });
 }
 
@@ -130,10 +138,10 @@ addBtn.addEventListener("click", () => {
 
 // number of pages pagination
 function numberOfPages(data) {
-  let x = data.length / 3;
+  let x = data.length / 4;
   let NumberOfPages = Math.ceil(x);
   for (let i = 1; i < NumberOfPages + 1; i++) {
-    let row = `<li class="page-item my-3"><a onclick=manpulateResponse(${i}) class="page-link bg-black " style="color:#CA8E46;">${i}</a></li>`;
+    let row = `<li class="page-item my-3"><a onclick=manpulateResponseData(${i}) class="page-link bg-black " style="color:#CA8E46;">${i}</a></li>`;
     document.getElementById("pagination").innerHTML += row;
   }
 }

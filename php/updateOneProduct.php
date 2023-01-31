@@ -6,7 +6,7 @@ $productprice=$_REQUEST['price'];
 $productStatus=$_REQUEST['status'];
 $productId=$_REQUEST['id'];
 $catagoryId=$_REQUEST['category'];
-$categoryPic=$_FILES['img'];
+$categoryPic=$_FILES['realImg'];
 
 
 
@@ -47,7 +47,7 @@ if (!in_array($imgExtension, $allowed_image_extension)) {
 } else {
     setcookie('errors','', -1, '/');
 }
- $categoryPic=$_FILES['img'];
+ $categoryPic=$_FILES['realImg'];
 $file_path = $categoryPic['tmp_name'];
 $categoryPic = '../images/products/' . time() . '.' . explode('/', mime_content_type($file_path))[1];
 move_uploaded_file($file_path, $categoryPic);
@@ -65,7 +65,7 @@ if($result){
 }else{
     
     $db->udateproductData($productId,$productName,$productprice,$catagorypicuplode,$productStatus,$catagoryId);
-    // header('Location:../all_product.html');
+    header('Location:../all_product.html');
     setcookie('errors','', -1, '/');
 }
 

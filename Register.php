@@ -131,7 +131,11 @@
     // }
     // for insert user 
     if ($res && $res1) {
+        if(isset( $_SESSION['user_id'])){
+            header("location:all_users.html");
+        }else{
         $_SESSION['user_id'] = $user_id;
-        header("location:index.html");
+        header("location:userHome.html");
+        }
         exit();
     }

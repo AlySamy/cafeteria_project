@@ -14,6 +14,10 @@ font-family: "Montserrat";
 .navbar-expand-lg{
   background-color:#000000f7;
 }
+/* .navbar-toggler-icon {
+  background-color: #CA8E46;
+
+} */
 
 
 nav .logo{
@@ -77,8 +81,24 @@ nav .icon:hover{
   background-color: transparent;
   border-color:transparent
 }
+#log_out_btn {
+  text-align: center;
+  color: #fff;
+  border-radius: 0px;
+  outline: 0;
+  font-weight: 800;
+  text-decoration: none;
+  padding: 8px 20px;
+  font-size: 12px;
+  font-weight: 600;
+  border: none;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  background-color: #ca8e46;
+  margin-left: 15px  ;
+}
 
-.dropdown-menu{
+/* .dropdown-menu{
   background-color: #CA8E46;
   --bs-dropdown-zindex: 1000;
   --bs-dropdown-min-width: 0rem;
@@ -106,7 +126,7 @@ nav .icon:hover{
 .dropdown-item:hover{
   background-color: transparent;
   color: #CA8E46;
-}
+} */
 
 
 /* ----- footer ------ */
