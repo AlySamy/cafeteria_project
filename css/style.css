@@ -224,7 +224,25 @@ header .carousel-item {
 .backimg .overlay .location {
   position: relative;
   width: 100%;
-  top: 29%;
+  top: 25%;
+}
+@media (max-width: 700px){
+  body{
+    padding: 0px  !important;
+    margin:0px ;
+    box-sizing: border-box;
+  }
+  .backimg {
+    background-image: url(../images/background/3.jpg);
+    height: 100vh;
+  }
+  .backimg .overlay .location {
+    position: relative;
+    width: 100%;
+    top: 0%;
+    height: 100vh;
+  }
+
 }
 .backimg .overlay {
   height: 100%;

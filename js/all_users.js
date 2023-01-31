@@ -56,8 +56,8 @@ function createRow(obj) {
   let img = document.createElement("img");
   let editBtn = document.createElement("button");
   let deleteBtn = document.createElement("button");
-  editBtn.classList.add("btn","editBtn","mx-2");
-  deleteBtn.classList.add("btn","btn-danger","mx-2");
+  editBtn.classList.add("btn","editBtn","mx-0","mx-md-2","my-1","my-md-0");
+  deleteBtn.classList.add("btn","btn-danger","mx-0","mx-md-2","my-1","my-md-0");
   userName.innerHTML = obj.name;
   userRoom.innerHTML = obj.Room_number;
   img.src = `./images/users/${obj.profile_pic}`;
