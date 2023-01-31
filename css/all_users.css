@@ -17,9 +17,14 @@ a{
   
 
 }
-@media(max-width:419px){
+/* @media(max-width:419px){
   .usertable .bg-white{
     width: 100vw !important;
+  }
+} */
+@media(max-width:570px){
+  .usertable .bg-white{
+    overflow-x: scroll;
   }
 }
 /* .usertable {
